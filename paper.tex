@@ -1,0 +1,492 @@
+\documentclass[a4paper]{IEEEconf}
+
+\usepackage{natbib}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\usepackage{tikz}
+\usetikzlibrary{math,fpu,calc,fit,mindmap,backgrounds,positioning}
+
+\usepackage{xspace}
+\newcommand{\eg}{e.g.\xspace}
+\newcommand{\etal}{et al.\xspace}
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\vs}{\textit{vs.}\xspace}
+
+\graphicspath{{figs/}}
+
+\title{PInSoRo: A Dataset for Deep-learning of Human-Robot Social Interactions}
+
+
+\author{Séverin Lemaignan, Tony Belpaeme}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+%% Original abstract -- kept for future reference
+%Over the last decades, efforts around the world have sought to improve
+%human-robot interactions, more recently with a focus on longer-term
+%interactions. If worthy, these efforts are often incremental and many
+%problems remain. In the light of the recent and rapid progress of machine
+%learning, we propose here to shift the paradigm: instead of more and more
+%complex symbolic cognitive modeling of the interactions between humans and
+%robots, we argue that natural and sustainable human-robot interaction could
+%instead be directly learned from actual human-human interactions. This paper
+%outlines the main challenges ahead, and proposes a first concrete step
+%toward the operationalization of this novel paradigm: the creation of a
+%large dataset of human-robot social interactions, suitable for machine
+%learning.
+
+Child-robot interactions are increasingly being explored in domains which
+require longer-term application, such as healthcare and education. In order
+for a robot to behave in an appropriate manner over longer timescales, its
+behaviours should be coterminous with that of the interacting children.
+Generating such sustained and engaging social behaviours is an on-going research
+challenge, and we argue here that the recent progress of deep machine learning
+opens new perspectives that the HRI community should embrace. As an initial
+step in that direction, we present a new large and open dataset of
+children social interactions, designed with deep-learning applications in mind.
+Our acquisition methodology relies on little-constrainted \emph{free play}:
+by doing so, we seek to capture a rich set of behavioural patterns occurring
+in natural social interactions.
+
+\todo[inline]{the dataset is not specific to robotics...PinSoRo is maybe not the
+    best name?}
+
+\end{abstract}
+
+\section{Machine Learning: the Next Horizon for Social Robots?}
+
+While the family of \emph{recurrent neural networks} have repeatedly made the
+headlines over the last few years with impressive results, notably in image
+classification, image labelling and automatic translation, they have been 
+largely ignored in many other fields so far as they are perceived to require very
+large datasets (hundreds of thousands to millions of observations) to actually
+build up useful capabilities. Even though neural networks have demonstrated
+compelling results in open-ended, under-defined tasks like image labelling, they
+did not stand out as attractive approaches to problems involving high dimensions
+with relatively small datasets available -- like human-robot social
+interactions.
+
+Besides, if one considers ``social interactions'' to also entail joint
+behavioural dynamics, and therefore, some sort of temporal modeling, neural
+networks look even less enticing as time is notably absent from most of the
+tasks which neural networks have been successful at.
+
+In 2015, the Google DeepMind team demonstrated how a convolutional
+recurrent neural network could learn to play the game Break-Out (amongst
+48 other Atari games) by only \emph{looking} at the gaming console
+screen~\cite{mnih2015human}. This result represents a major milestone: they show
+that a relatively small sample size (about 500 games) is sufficient for an 
+artificial agent to not only learn how to play (which requires an implicit model 
+of time to adequately move the Break-Out paddle), but to also create gaming 
+strategies that \emph{look like} they would necessitate planning (the system first
+breaks bricks on one side to eventually get the ball to break-out and reach the area
+\emph{above} the remaining bricks, therefore ensuring rapid progress in the
+game). We argue that the complexity of mechanisms that such a neural network has been able
+to quickly uncover and model should invite our
+community to question its applicability to human-robot interactions (HRI) in general,
+and sustained, natural child-robot interactions in particular.
+
+However, the lack of a widespread HRI dataset suitable for the training of
+neural networks is a critical obstacle to this initial exploration. We present
+hereafter such a dataset, and detail our acquisition methodology.
+
+\section{Machine learning and social behaviour}
+
+Using interaction datasets to teach robots how to socially behave has been
+previously explored, and can be considered as an extension of the traditional
+learning from demonstration (LfD) paradigms to social interactions (for
+instance~\cite{nehaniv2007imitation,mohammad2015interaction}). Previous examples
+have generally focused on low-level recognition or generation of short,
+self-standing behaviours, including social gestures~\cite{nagai2005learning} and
+gazing behaviours~\cite{calinon2006teaching}.
+
+Based on a human-human interaction dataset, Liu \etal~\cite{liu2014how} have
+investigated machine learning approaches to learn longer interaction sequences.
+Using unsupervised learning, they train a robot to act as a shop-keeper,
+generating both speech and socially acceptable motions. Their approach remains
+task-specific, and while they report only limited success, they emphasise the
+``life-likeness'' of the generated behaviours.
+
+Kim \etal~\cite{kim2015pororobot} highlight that applying deep learning to
+visual scene information in an HRI scenario was successful, but that
+generating behaviours for the robot to be able to act in a dynamic and uncertain
+environment remains a challenge.
+\todo[inline]{cite Ogata's work}
+
+%They rely on unsupervised learning, with a
+%training stage consisting in clustering behavioural states (a state consist in
+%\emph{behavioural elements} ( joint states of the two interacting agents,
+%associated to the current speech elements, as well as the current joint
+%\emph{spatial formation}), followed by the {WIP]
+
+These examples show the burgeoning interest of our community for the automatic
+learning of social interactions, but also highlight the lack of structure of
+these research efforts, as further illustrated by the quasi-absence of public
+and large datasets of human-robot interactions. To our best knowledge, only the
+$H^3R$ Explanation Corpus~\cite{mohammad2008h} and the Vernissage
+Corpus~\cite{jayagopi2013vernissage} have been published to date. The $H^3R$
+Explanation Corpus is a human-human and human-robot dataset focusing on a
+``assembly/disassembly explanation'' task and includes physiological signals (22
+human-robot interactions), but is not publicly available. the Vernissage Corpus
+includes one museum guide robot interacting with two people (13 interactions in
+total), with recordings and annotations of poses and speech audio (stated to be
+publicly available). Both these corpora are however too small for
+machine-learning applications.
+
+\todo[inline]{look at child-child datasets!}
+
+\section{The Plymouth Interacting Social Robots Dataset (PInSoRo)}
+
+As introduced, our aim is to build a dataset that can be used to train
+machine-learning algorithms to both recognise and generate complex cognitive and
+social dynamics in human-robot interactions. The Plymouth Interacting Social
+Robots (PInSoRo) Dataset is such a novel dataset, comprising of \emph{natural
+social} interactions arising between children, and recorded in a way suitable
+for research methodologies based on machine learning. As detailed in
+section~\ref{availablity}, this dataset is open and made freely available to any
+interested researcher.
+
+
+\subsection{The freeplay sandbox}
+
+Critically, the acquisition of such a dataset requires first the definition of a
+task to be performed by the participants while they are recorded. The nature of
+this task influences in fundamental way the kind of interactions that might be
+observed, and thus, learned.  Because they usually target very specific social
+or cognitive skills in a tightly controlled manner, traditional socio-cognitive tasks are
+either toy scenarios (\ie they do not adequately mirror real-world situations)
+or simple, constrained tasks that do not reflect the complexity and dynamics of
+real-world interactions. For this dataset, we aim on the contrary at a rich set
+of naturally-occuring social interactions, and as such we have designed a novel
+task that is:
+
+\begin{itemize}
+    \item be \textit{fundamentally social}, \ie the task would make little sense for an
+        agent alone;
+    \item foster rich \textit{multi-modal interaction}: simultaneous speech, gesture, and gaze
+        behaviours are to be observed;
+    \item exhibit \textit{non-trivial dynamics}, such as implicit turn-taking;
+    \item should cover a \textit{broad range of interaction situations}.
+\end{itemize}
+
+
+This new experimental task is based on \emph{free play} interactions. Pairs of
+children (4-7 years old) are invited to freely draw and interact with items
+displayed on an interactive table, telling and acting stories with no explicit
+goal set in advance (Fig.~\ref{fig|setup}).
+
+As a result, the interaction space is high-dimensional, along two main axis: the
+game-related actions (drawing, manipulating items) and the social interactions
+(looking at the other's actions, skink
+ocial interaction situation based on
+free dramatic play: 
+Critically we propose to limit these tasks to
+\emph{face-to-face} social interactions, either dyadic or triadic. This constrains the dataset to
+a more tractable domain, and should ensure technical feasibility. 
+
+
+
+
+, free play social
+interactions exhibit a rich set of natural cognitive and social dynamics that
+are desirable.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{setup.png}
+    \caption{The free play social interactions sandbox\todo[inline]{replace with a
+    cihld-child configuration}}
+    \label{fig|setup}
+\end{figure}
+
+To mitigate the technical challenges presented by free play interactions in
+their most unconstrained version (like
+high dimensionality and uncertainties), we have developped a \emph{free play
+sandbox}, Figure~\ref{fig|setup}: a large touchscreen (60cm $\times$ 33cm) is
+used as an interactive surface (\emph{sandtray}
+paradigm~\cite{baxter2012touchscreen}). Two agents (either a pair of children or
+one child and one robot) play together by freely moving on a 2D plane items
+(characters and blocks, see Figure~\ref{fig|sandbox}). A background image
+depicts a generic empty environment, with different symbolic zones (water,
+grass, path, bushes...). The players do not have any particular task to
+complete, they are simply invited to freely play.
+
+
+children can engage in open-ended and
+non-directive play situations, yet sufficiently
+defined to be reproducible; 
+
+\subsection{Socio-cognitive Framing}
+
+focus on abstract socio-cognitive facets (robot
+perception and manipulation are simplified); well suited for qualitative and
+quantitative analysis using metrics like Słowinski’s Individual Motor Signature
+(for behavioural alignment), Anderson's~\cite{anderson2004social} coding of children’s free-play
+interactions, with-me-ness (for assessment of co-engagment).
+
+carefully framed: as far as possible, they ne-
+cessitate only the cognitive capabilities that they ev-
+idence (e.g. if they evidence a purely socio-linguistic
+mechanism, they will not mandate complex action ca-
+pabilities – they may benefit from it, though),
+
+This point is especially important as it allows an
+incremental path: a robot should be able to tackle one or
+several of these task independently of the others, and a re-
+search team may progressively extend their cognitive models
+to incorporate more and more of the cognitive capabilities
+required by the robot to address all of the tasks.
+
+\subsection{Analysis of the free play sandbox}
+
+Our free play sandbox elicits a loosely structured play situation. The
+situation is indeed essentially aimless (free play). The goals and play episodes
+that we observe during the interactions are not pre-defined, and essentially
+unknown until they are decided by the players. In this sense, the free play
+sandbox permits and elicits what is fundamentally \emph{unstructured play}.
+
+However, a second look reveals some important structuring elements.
+
+First, the physical bounds of the sandbox (an interactive table) limit the
+play zone to a well defined and relatively small area. As a consequence,
+children are mostly static (they are sitting in front of the table) and their
+primary form of interaction is 2D pick and place of items by drag and dropping
+them on the screen.
+
+Second, the game items themselves structure the game scenarios. Items are either
+iconic characters (animals or children) or plain blocks
+(Figure~\ref{fig|sandbox}). The former have strong semantics associated to them
+(like 'crocodiles like water and eat children'), while the later have little
+semantics associated. The game background, with its recognizable zones, also
+elicit a particular type of games (like building a zoo or pretending we explore
+the savannah).
+
+Finally, the social setting (two players facing each other) implicitely invites
+social interaction: onlooker play, for instance, is unlikely to be observed as
+the children are physically engaged with the game and the other participant
+(they are sitting in front of game, close to each other). The three higher forms
+of social play listed by Parten (parallel play, associative play and cooperative
+play) are however possible with this setup.
+
+
+Two more elements (the role and place of the experimenter, and the initial
+prompt given to the participant) have an important impact on the shape of the
+play situation. We discuss separately these two points in the description of the
+experimental procedure.
+
+Overall, the free play sandbox supports a \emph{loosely structured} form of play: the
+actual play situations are not known and might change several times during the
+interaction; the game actions, even though all based on a single modality (picking and
+placing game items), are unlimited; the social interactions between participants
+are multi-modal (speech, body postures, gestures, facial expressions, etc.) and
+unconstrainted. However, the broad domain of the play situations and the range of
+possible social interactions is bound by the physical bounds of the play zone
+and the theme of the game items.
+
+\subsection{Forms of play elicited by the sandbox}
+
+\begin{itemize}
+    \item dramatic play
+    \item storytelling
+    \item creative play
+    \item pretend play
+\end{itemize}
+
+\paragraph{From unstructured to structured play}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{sandbox}
+    \caption{Example of a game situation: the child and the robot `build'
+    together a zoo. The animals and the blocks can be dragged over the whole
+    play area, while the background picture is static and purely decorative.}
+    \label{fig|sandbox}
+\end{figure}
+
+
+\paragraph{Pretence}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{sandbox-release-cheetah}
+    \caption{Possible play situation: the children pretend to release the cheetah
+    and create a story where the cheetah scares away the visitors.}
+    \label{}
+\end{figure}
+
+\subsection{Implementation}
+
+The sandbox is implemented using mainly two frameworks: the Qt's \emph{QtQuick} framework
+for the graphical interface of the game, and the \emph{Robot Operating System}
+(ROS) for the modular implementation of the data processing and behaviour
+generation pipelines.
+
+Figure~\ref{fig|architecture} presents the software architecture of the sandbox.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\linewidth]{freeplay-sandbox-architecture}
+\label{fig|architecture}
+\caption{Architecture of the free play sandbox. Yellow nodes represent
+    hardware (cameras and robot); purple nodes relate to the game interface;
+    red nodes manage the robot; the green node implements the game policy (when
+    the robot is playing); blue nodes relates to visual attention tracking.}
+\end{figure*}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{rviz-sandtray}
+    \caption{The freeplay sandbox, viewed at runtime within ROS RViz. The
+    current background drawing (bottom left) is published on a regular image
+    topic. Simple computer vision is used to segment it into zones (visible in
+    the central panel). The poses and bounding boxes of the interactive items
+    are published as well, and turned into an occupancy map, used to plan the
+    robot's arm motion.
+    visualisation tool.}
+    \label{fig|rviz}
+\end{figure}
+
+\section{Dataset Structure}
+
+\subsection{Acquisition Procedure}
+
+\subsection{Initial Dataset Analysis}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{analysis}
+    \caption{Screenshot of the interaction analysis tool: faces of the two
+    children are recorded, as well as any interaction occuring on the
+    interactive table.}
+    \label{fig|analysis}
+\end{figure}
+
+\subsection{Dataset availablity}
+\label{availablity}
+
+The dataset is freely available to any interested researcher. Due to ethical
+and data protection regulations, the dataset is however made available in two
+forms: a public, Creative-Commons licensed, version that do not include any
+material enabling the identification of the children (in particular, it does not
+contain any video stream); and a complete version that includes all video
+streams. This second version is freely available as well, but interested
+researchers must first fill a data protection form.
+
+
+\section{Research Questions and Hypotheses}
+
+The mechanisms underlying the social interactions happening during free play
+raise important questions for social robotics.
+
+
+\subsection{Game Dynamics}
+
+\begin{itemize}
+    \item do we observe a sequence of sub-games?
+    \item how are these sub-games initiated?
+    \item how does A keep track of what B is playing at?
+    \item how do we segment the action flow into meaningful play situations?
+\end{itemize}
+
+\subsection{Social Dynamics}
+
+\begin{itemize}
+    \item does a ``social protocol'' establish?
+    \item if so, what are these social rules?
+    \item implicit vs explicit rule setting?
+    \item what interaction modalities (or combination thereof) are relied upon
+        to establish and maintain this ``social protocol''?
+\end{itemize}
+
+\subsection{Mental representations}
+
+\begin{itemize}
+    \item Does A know what B is thinking of at time t?
+    \item Do the participants perform explicit grounding of their respective mental models
+        (ie, ask the other one what she is doing/thinking/planning to do?)
+    \item How does the implicit grounding take place? attention tracking?
+    \item Do we need at all to know what the other intends to do to actually
+        collaborate? surface alignment vs deep grounding
+    \item Procedural (how do you do it?) vs Semantic
+        grounding (what are you doing? playing at?)
+\end{itemize}
+
+\subsection{Interplay between these questions}
+
+\begin{figure}
+\centering
+
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+                font=\sffamily,
+                >=latex,
+                every edge/.style={draw, very thick},
+                node/.style={draw, rounded corners, align=center, inner sep=5pt, fill=black!20},
+                label/.style={midway, align=center, font=\scriptsize\sffamily, fill=white}]
+
+    %%% NODES
+    \node [node] (mentalrepresentations) {Mental Representations};
+    \node [above left=of mentalrepresentations] (gameactions) {\it game actions};
+    \node [node, above=of gameactions] (gamedynamics) {Game dynamics};
+    \node [above right=of mentalrepresentations] (socialactions) {\it social actions};
+    \node [node, above=of socialactions ] (socialdynamics) {Social Dynamics};
+
+    %%% CONNECTIONS
+    \path (gamedynamics) edge [<->, dashed] node[label, above] {?}(socialdynamics);
+    \path (gamedynamics) edge [<-, bend right] node[label] {mediate}(gameactions);
+    \path (socialactions) edge [->, bend left] node[label] {reflect}(mentalrepresentations);
+    \path (socialactions) edge [->, dashed] node[label,above] {?}(gamedynamics);
+    \path (gameactions) edge [->, dashed] node[label,above] {?}(socialdynamics);
+    \path (gameactions) edge [->, bend right] node[label] {reflect}(mentalrepresentations);
+    \path (socialdynamics) edge [<-, bend left] node[label] {shape}(socialactions);
+
+\end{tikzpicture}
+}
+\label{fig|researchquestions}
+\caption{Game dynamics, social dynamics and mental representations are linked
+    with each other through social actions (implicit and explicit communication)
+    and actions on the environment (mainly game actions)}
+\end{figure}
+
+\subsection{Child-robot baseline}
+
+During the acquisition campaign for the PinSoRo dataset, we have also recorded a
+\emph{child-robot} interaction baseline. We were using the exact same protocol
+as described above, only with one child replaced by a Nao robot.
+
+The robot was fully autonomous, and programmed to exhibit a non-social behaviour
+(its action policy was simply to repeatedly move interactive items to
+pre-defined zones, entierly ignoring its child partner).
+
+As such, this behaviour (and the resulting reaction of the children to a
+robot acting in a non-social way) represent an experimental baseline against which
+future work can be compared.
+
+\section{Conclusion}
+
+
+By analyzing them from the
+perspective of artifical socio-cognition and human-robot interaction, we
+evidence key social patterns and show that robots can recognise them,
+interpret them, and (where applicable) generate them in a task-agnostic
+fashion. By subsequently reusing these social patterns in similar
+child-robot free play situations, we show a significant increase of the
+interaction duration.
+
+
+
+\bibliographystyle{plain}
+\bibliography{biblio}
+
+\end{document}
