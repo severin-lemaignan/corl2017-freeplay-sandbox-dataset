@@ -169,19 +169,19 @@ interactions between peers.
 \todo[inline]{the dataset is not specific to robotics...PinSoRo is maybe not the
     best name?}
 
-As introduced, our aim is to build a dataset that can be used to train
-machine-learning algorithms to both recognise and generate complex cognitive and
-social dynamics in human-robot interactions. The Plymouth Interacting Social
-Robots (PInSoRo) Dataset is such a novel dataset, comprising of \emph{natural
-social} interactions arising between children, and recorded in a way suitable
-for research methodologies based on machine learning. As detailed in
-section~\ref{availablity}, this dataset is open and made freely available to any
-interested researcher.
+The Plymouth Interacting Social Robots (PInSoRo) Dataset comprises of natural
+social interactions arising between children, and recorded in a way suitable
+for research methodologies based on machine learning.
 
+As detailed in section~\ref{availability}, this dataset is open and made freely
+available to any interested researcher. It is intended to be used to train
+machine-learning algorithms (typically, deep recurrent network) to both
+recognise and generate complex cognitive and social dynamics occurring in the
+wild during social interactions.
 
-\subsection{The freeplay sandbox}
+\subsection{The Freeplay Sandbox}
 
-Critically, the acquisition of such a dataset requires first the definition of a
+The acquisition of such a dataset requires first the definition of a
 task to be performed by the participants while they are recorded. The nature of
 this task influences in fundamental way the kind of interactions that might be
 observed, and thus, learned.  Because they usually target very specific social
@@ -189,21 +189,17 @@ or cognitive skills in a tightly controlled manner, traditional socio-cognitive 
 either toy scenarios (\ie they do not adequately mirror real-world situations)
 or simple, constrained tasks that do not reflect the complexity and dynamics of
 real-world interactions. For this dataset, we aim on the contrary at a rich set
-of naturally-occuring social interactions, and as such we have designed a novel
-task that is:
+of naturally-occurring social interactions, and as such we have designed a novel
+task that:
 
 \begin{itemize}
-    \item be \textit{fundamentally social}, \ie the task would make little sense for an
+    \item is fundamentally social, \ie the task would make little sense for an
         agent alone;
-    \item foster rich \textit{multi-modal interaction}: simultaneous speech, gesture, and gaze
+    \item elicit a large range of interaction situations;
+    \item foster rich multi-modal interaction: simultaneous speech, gesture, and gaze
         behaviours are to be observed;
-    \item exhibit \textit{non-trivial dynamics}, such as implicit turn-taking;
-    \item should cover a \textit{broad range of interaction situations}.
+    \item foster non-trivial social dynamics, such as implicit turn-taking.
 \end{itemize}
-
-analysis of behavioural alignment between partners (via
-metrics like the recently proposed \emph{Individual Motor
-Signature}~\cite{slowinski2016dynamic})
 
 This new experimental task is based on \emph{free play} interactions. Pairs of
 children (4-7 years old) are invited to freely draw and interact with items
@@ -255,7 +251,7 @@ children can engage in open-ended and
 non-directive play situations, yet sufficiently
 defined to be reproducible; 
 
-\subsection{Socio-cognitive Framing}
+\subsubsection{Socio-cognitive Framing}
 
 focus on abstract socio-cognitive facets (robot
 perception and manipulation are simplified); well suited for qualitative and
@@ -287,7 +283,7 @@ required by the robot to address all of the tasks.
 \end{figure}
 
 
-\subsection{Implementation}
+\subsubsection{Implementation}
 
 The sandbox is implemented using mainly two frameworks: the Qt's \emph{QtQuick} framework
 for the graphical interface of the game, and the \emph{Robot Operating System}
@@ -306,7 +302,14 @@ generation pipelines.
     \label{fig|rviz}
 \end{figure}
 
-\section{Dataset Structure}
+\subsection{Dataset Acquisition}
+
+All data has been collected by researchers at the Plymouth University, under a
+protocol approved by the university ethics committee. The parents of the
+participants explicitly consented to sharing of their child's video and audio
+with the research community. The data is labelled with a unique participant code
+only and does not contain any identifying information, except the participant's
+images. The child's age and gender are also available.
 
 \begin{figure}
     \centering
@@ -321,7 +324,7 @@ generation pipelines.
     \label{fig|rviz}
 \end{figure}
 
-\subsection{Conditions}\label{conditions}
+\subsubsection{Conditions}\label{conditions}
 
 \begin{itemize}
 \item
@@ -332,7 +335,7 @@ generation pipelines.
   not exhibit any social behaviour.
 \end{itemize}
 
-\subsection{Demographics}\label{demographics}
+\subsubsection{Demographics}\label{demographics}
 
 \begin{itemize}
 \item
@@ -348,7 +351,7 @@ Normally developping children, from local primary schools and nurseries.
 
 
 
-\subsection{Experimental Setup}\label{experimental-setup}
+\subsubsection{Experimental Setup}\label{experimental-setup}
 
 On large touchscreen, mounted on a horizontal frame (\emph{sandtray});
 both children (condition A, Figure 2) or the child and the robot
@@ -378,14 +381,8 @@ cameras.
 One computer (integrated with the touchscreen) manages the game and the
 synchronous recording of the cameras and microphones.
 
-\subsection{Acquisition Procedure}
+\subsubsection{Acquisition Procedure}
 
-All data has been collected by researchers at the Plymouth University, under a
-protocol approved by the university ethics committee. The parents of the
-participants explicitly consented to sharing of their child's video and audio
-with the research community. The data is labelled with a unique participant code
-only and does not contain any identifying information, except the participant's
-images. The child's age and gender are also available.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -446,7 +443,12 @@ images. The child's age and gender are also available.
 \end{enumerate}
 
 Total duration: 30 minutes per group.
-\subsection{Initial Dataset Analysis}
+
+\subsubsection{Initial Dataset Analysis}
+
+analysis of behavioural alignment between partners (via
+metrics like the recently proposed \emph{Individual Motor
+Signature}~\cite{slowinski2016dynamic})
 
 \begin{figure}
     \centering
@@ -457,8 +459,10 @@ Total duration: 30 minutes per group.
     \label{fig|analysis}
 \end{figure}
 
-\subsection{Dataset availablity}
-\label{availablity}
+\section{Dataset Structure}
+
+\subsection{Dataset availability}
+\label{availability}
 
 
 The dataset is freely available to any interested researcher. Due to ethical
