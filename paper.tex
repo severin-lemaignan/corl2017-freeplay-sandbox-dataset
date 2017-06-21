@@ -1,4 +1,6 @@
-\documentclass[a4paper]{IEEEconf}
+\documentclass{article}
+
+\usepackage{corl_2017}
 
 \usepackage{natbib}
 \usepackage[english]{babel}
@@ -100,7 +102,7 @@ However, the lack of a widespread HRI dataset suitable for the training of
 neural networks is a critical obstacle to this initial exploration. We present
 hereafter such a dataset, and detail our acquisition methodology.
 
-\section{Machine learning and social behaviour}
+\subsection{Machine learning and social behaviour}
 
 Using interaction datasets to teach robots how to socially behave has been
 previously explored, and can be considered as an extension of the traditional
@@ -179,6 +181,9 @@ task that is:
     \item should cover a \textit{broad range of interaction situations}.
 \end{itemize}
 
+analysis of behavioural alignment between partners (via
+metrics like the recently proposed \emph{Individual Motor
+Signature}~\cite{slowinski2016dynamic})
 
 This new experimental task is based on \emph{free play} interactions. Pairs of
 children (4-7 years old) are invited to freely draw and interact with items
@@ -204,9 +209,12 @@ are desirable.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\linewidth]{setup.png}
-    \caption{The free play social interactions sandbox\todo[inline]{replace with a
-    cihld-child configuration}}
+    \includegraphics[width=0.4\linewidth]{setup-child-child.png}
+    \hspace{1em}
+    \includegraphics[width=0.4\linewidth]{setup-child-robot.png}
+    \caption{The free play social interactions sandbox. Data acquisition is
+    performed under two (between subjets) conditions: either children playing together, or one
+    child playing with a \emph{non-social} robot.}
     \label{fig|setup}
 \end{figure}
 
@@ -248,82 +256,16 @@ search team may progressively extend their cognitive models
 to incorporate more and more of the cognitive capabilities
 required by the robot to address all of the tasks.
 
-\subsection{Analysis of the free play sandbox}
-
-Our free play sandbox elicits a loosely structured play situation. The
-situation is indeed essentially aimless (free play). The goals and play episodes
-that we observe during the interactions are not pre-defined, and essentially
-unknown until they are decided by the players. In this sense, the free play
-sandbox permits and elicits what is fundamentally \emph{unstructured play}.
-
-However, a second look reveals some important structuring elements.
-
-First, the physical bounds of the sandbox (an interactive table) limit the
-play zone to a well defined and relatively small area. As a consequence,
-children are mostly static (they are sitting in front of the table) and their
-primary form of interaction is 2D pick and place of items by drag and dropping
-them on the screen.
-
-Second, the game items themselves structure the game scenarios. Items are either
-iconic characters (animals or children) or plain blocks
-(Figure~\ref{fig|sandbox}). The former have strong semantics associated to them
-(like 'crocodiles like water and eat children'), while the later have little
-semantics associated. The game background, with its recognizable zones, also
-elicit a particular type of games (like building a zoo or pretending we explore
-the savannah).
-
-Finally, the social setting (two players facing each other) implicitely invites
-social interaction: onlooker play, for instance, is unlikely to be observed as
-the children are physically engaged with the game and the other participant
-(they are sitting in front of game, close to each other). The three higher forms
-of social play listed by Parten (parallel play, associative play and cooperative
-play) are however possible with this setup.
-
-
-Two more elements (the role and place of the experimenter, and the initial
-prompt given to the participant) have an important impact on the shape of the
-play situation. We discuss separately these two points in the description of the
-experimental procedure.
-
-Overall, the free play sandbox supports a \emph{loosely structured} form of play: the
-actual play situations are not known and might change several times during the
-interaction; the game actions, even though all based on a single modality (picking and
-placing game items), are unlimited; the social interactions between participants
-are multi-modal (speech, body postures, gestures, facial expressions, etc.) and
-unconstrainted. However, the broad domain of the play situations and the range of
-possible social interactions is bound by the physical bounds of the play zone
-and the theme of the game items.
-
-\subsection{Forms of play elicited by the sandbox}
-
-\begin{itemize}
-    \item dramatic play
-    \item storytelling
-    \item creative play
-    \item pretend play
-\end{itemize}
-
-\paragraph{From unstructured to structured play}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{sandbox}
     \caption{Example of a game situation: the child and the robot `build'
-    together a zoo. The animals and the blocks can be dragged over the whole
-    play area, while the background picture is static and purely decorative.}
+    together a zoo. Items (animals, characters...) can be dragged over the whole
+    play area, while the background picture can be painted over.}
     \label{fig|sandbox}
 \end{figure}
 
-
-\paragraph{Pretence}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\linewidth]{sandbox-release-cheetah}
-    \caption{Possible play situation: the children pretend to release the cheetah
-    and create a story where the cheetah scares away the visitors.}
-    \label{}
-\end{figure}
 
 \subsection{Implementation}
 
@@ -332,21 +274,23 @@ for the graphical interface of the game, and the \emph{Robot Operating System}
 (ROS) for the modular implementation of the data processing and behaviour
 generation pipelines.
 
-Figure~\ref{fig|architecture} presents the software architecture of the sandbox.
-
-\begin{figure*}
-    \centering
-    \includegraphics[width=\linewidth]{freeplay-sandbox-architecture}
-\label{fig|architecture}
-\caption{Architecture of the free play sandbox. Yellow nodes represent
-    hardware (cameras and robot); purple nodes relate to the game interface;
-    red nodes manage the robot; the green node implements the game policy (when
-    the robot is playing); blue nodes relates to visual attention tracking.}
-\end{figure*}
-
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{rviz-sandtray}
+    \caption{The freeplay sandbox, viewed at runtime within ROS RViz. The
+    current background drawing is published on a regular image
+    topic and computer vision is used to segment it into zones (visible in
+    the central panel). The poses and bounding boxes of the interactive items
+    are published as well, and turned into an occupancy map, used to plan the
+    robot's arm motion.}
+    \label{fig|rviz}
+\end{figure}
+
+\section{Dataset Structure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{3d-point-cloud-facial-features}
     \caption{The freeplay sandbox, viewed at runtime within ROS RViz. The
     current background drawing (bottom left) is published on a regular image
     topic. Simple computer vision is used to segment it into zones (visible in
@@ -357,10 +301,124 @@ Figure~\ref{fig|architecture} presents the software architecture of the sandbox.
     \label{fig|rviz}
 \end{figure}
 
-\section{Dataset Structure}
+\subsection{Conditions}\label{conditions}
+
+\begin{itemize}
+\item
+  Condition A: one pair of children freely play together on the
+  sandtray.
+\item
+  Condition B: one child play together with the robot, the robot does
+  not exhibit any social behaviour.
+\end{itemize}
+
+\subsection{Demographics}\label{demographics}
+
+\begin{itemize}
+\item
+  Condition A: 40 pairs of children (ie, 80 children)
+\item
+  Condition B: 40 children
+\end{itemize}
+
+2 age groups, balanced across conditions: 4 y.o. (nursery) and 6 to 7
+y.o. (Y1/Y2)
+
+Normally developping children, from local primary schools and nurseries.
+
+
+
+\subsection{Experimental Setup}\label{experimental-setup}
+
+On large touchscreen, mounted on a horizontal frame (\emph{sandtray});
+both children (condition A, Figure 2) or the child and the robot
+(condition B, Figure 3) are facing each other.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\linewidth]{setup_child_child_top}
+    \hspace{1.5cm}
+    \includegraphics[width=0.4\linewidth]{setup_child_robot_top}
+    \caption{Experimental setup, child-child condition (left) and child-robot
+    condition (right).}
+\end{figure}
+
+The experimenter stays in the room, visible from the child. When
+requested by the nursery or school, another childminder (nursery/school
+staff) can be present in the room. She/he is however asked not to step
+in during the experiment.
+
+The interaction is recorded by 3 cameras (on `environment' camera
+filming the whole scene; two RGB-D cameras, focused on each of the
+children faces).
+
+Audio is recorded as well with 2 microphones integrated to the RGB-D
+cameras.
+
+One computer (integrated with the touchscreen) manages the game and the
+synchronous recording of the cameras and microphones.
 
 \subsection{Acquisition Procedure}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  welcome (5 min):
+
+  \begin{itemize}
+  \item
+    place children on cushions
+  \item
+    give them the yellow/purple sport bibs
+  \item
+    make sure hairs are tied (to help with face tracking)
+  \item
+    ask names (but do not write them down)
+  \item
+    fill up questionaire on the tablet -- age, gender, familiarity with
+    tablet
+  \item
+    \textbf{remind the children that they can withdraw at anytime}
+  \item
+    \textbf{explain the purpose of the study: showing robots how
+    children play}
+  \item
+    in condition B, present briefly the robot -- saying it is not a very
+    sociable robot, and it might play alone.
+  \end{itemize}
+\item
+  visual focus task (30 seconds)
+\item
+  tutorial (1-2 min): explain how to interact with the game, ensure the
+  children are confident with the manipulation/drawing
+\item
+  main freeplay task (up to 40 min):
+
+  \begin{itemize}
+  \item
+    start the recording
+  \item
+    example prompt: ``I let you play now! You can build a zoo, or tell
+    stories, as you want''
+  \item
+    let children play
+  \item
+    encourage children to keep playing at least 5 min
+  \item
+    once they wish to stop, stop recording
+  \end{itemize}
+\item
+  debriefing (5 min):
+
+  \begin{itemize}
+  \item
+    answer possible questions from the children
+  \item
+    give stickers
+  \end{itemize}
+\end{enumerate}
+
+Total duration: 30 minutes per group.
 \subsection{Initial Dataset Analysis}
 
 \begin{figure}
@@ -473,6 +531,63 @@ As such, this behaviour (and the resulting reaction of the children to a
 robot acting in a non-social way) represent an experimental baseline against which
 future work can be compared.
 
+\section{Discussion}
+
+\subsection{Analysis of the free play sandbox}
+
+Our free play sandbox elicits a loosely structured play situation. The
+situation is indeed essentially aimless (free play). The goals and play episodes
+that we observe during the interactions are not pre-defined, and essentially
+unknown until they are decided by the players. In this sense, the free play
+sandbox permits and elicits what is fundamentally \emph{unstructured play}.
+
+However, a second look reveals some important structuring elements.
+
+First, the physical bounds of the sandbox (an interactive table) limit the
+play zone to a well defined and relatively small area. As a consequence,
+children are mostly static (they are sitting in front of the table) and their
+primary form of interaction is 2D pick and place of items by drag and dropping
+them on the screen.
+
+Second, the game items themselves structure the game scenarios. Items are either
+iconic characters (animals or children) or plain blocks
+(Figure~\ref{fig|sandbox}). The former have strong semantics associated to them
+(like 'crocodiles like water and eat children'), while the later have little
+semantics associated. The game background, with its recognizable zones, also
+elicit a particular type of games (like building a zoo or pretending we explore
+the savannah).
+
+Finally, the social setting (two players facing each other) implicitely invites
+social interaction: onlooker play, for instance, is unlikely to be observed as
+the children are physically engaged with the game and the other participant
+(they are sitting in front of game, close to each other). The three higher forms
+of social play listed by Parten (parallel play, associative play and cooperative
+play) are however possible with this setup.
+
+
+Two more elements (the role and place of the experimenter, and the initial
+prompt given to the participant) have an important impact on the shape of the
+play situation. We discuss separately these two points in the description of the
+experimental procedure.
+
+Overall, the free play sandbox supports a \emph{loosely structured} form of play: the
+actual play situations are not known and might change several times during the
+interaction; the game actions, even though all based on a single modality (picking and
+placing game items), are unlimited; the social interactions between participants
+are multi-modal (speech, body postures, gestures, facial expressions, etc.) and
+unconstrainted. However, the broad domain of the play situations and the range of
+possible social interactions is bound by the physical bounds of the play zone
+and the theme of the game items.
+
+\subsection{Forms of play elicited by the sandbox}
+
+\begin{itemize}
+    \item dramatic play
+    \item storytelling
+    \item creative play
+    \item pretend play
+\end{itemize}
+
 \section{Conclusion}
 
 
@@ -486,7 +601,6 @@ interaction duration.
 
 
 
-\bibliographystyle{plain}
 \bibliography{biblio}
 
 \end{document}
