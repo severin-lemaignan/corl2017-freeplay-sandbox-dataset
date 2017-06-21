@@ -69,13 +69,13 @@ behaviours is one of the ambitious foreseen outcome that this dataset enables.
 
 \section{Machine Learning: the Next Horizon for Social Robots?}
 
-While the family of \emph{recurrent neural networks} have repeatedly made the
+While the family of recurrent neural networks (RNN) have repeatedly made the
 headlines over the last few years with impressive results, notably in image
-classification, image labelling and automatic translation, they have been 
-largely ignored in many other fields so far as they are perceived to require very
+classification, image labelling and automatic translation, they have been so far 
+largely ignored by  many other fields as they are perceived to require very
 large datasets (hundreds of thousands to millions of observations) to actually
 build up useful capabilities. Even though neural networks have demonstrated
-compelling results in open-ended, under-defined tasks like image labelling, they
+compelling results in open-ended, under-specified tasks like image labelling, they
 did not stand out as attractive approaches to problems involving high dimensions
 with relatively small datasets available -- like human-robot social
 interactions.
@@ -95,14 +95,24 @@ of time to adequately move the Break-Out paddle), but to also create gaming
 strategies that \emph{look like} they would necessitate planning (the system first
 breaks bricks on one side to eventually get the ball to break-out and reach the area
 \emph{above} the remaining bricks, therefore ensuring rapid progress in the
-game). We argue that the complexity of mechanisms that such a neural network has been able
-to quickly uncover and model should invite our
-community to question its applicability to human-robot interactions (HRI) in general,
-and sustained, natural child-robot interactions in particular.
+game).
 
-However, the lack of a widespread HRI dataset suitable for the training of
-neural networks is a critical obstacle to this initial exploration. We present
-hereafter such a dataset, and detail our acquisition methodology.
+More recently, Ogata's team~\cite{yang2017repeatable} has demonstrated how an
+adequately configured RNN is able to learn a complex robotic task (folding soft
+objects like towels using a dual-arm mobile manipulator) from only \emph{35}
+demonstrations, one demonstration being a $\approx$ 70 seconds-long teleoperated
+sequence. The network inputs are the raw video stream from the head camera and the
+12 DoF of the two arms and the total training dataset comprises of about 28000
+steps of data.
+
+We argue that the complexity of mechanisms that such neural networks have been
+able to uncover and model should invite our community to question its
+applicability to human-robot interactions in general, and sustained, natural
+child-robot interactions in particular.
+
+However, the current lack of an appropriate HRI dataset suitable for the training of
+neural networks hinders this investigation. We present hereafter such a dataset,
+and detail our acquisition methodology.
 
 \subsection{Machine learning and social behaviour}
 
@@ -125,7 +135,6 @@ Kim \etal~\cite{kim2015pororobot} highlight that applying deep learning to
 visual scene information in an HRI scenario was successful, but that
 generating behaviours for the robot to be able to act in a dynamic and uncertain
 environment remains a challenge.
-\todo[inline]{cite Ogata's work}
 
 %They rely on unsupervised learning, with a
 %training stage consisting in clustering behavioural states (a state consist in
