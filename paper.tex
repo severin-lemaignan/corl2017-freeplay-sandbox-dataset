@@ -103,21 +103,23 @@ objects like towels using a dual-arm mobile manipulator) from only \emph{35}
 demonstrations, one demonstration being a $\approx$ 70 seconds-long teleoperated
 sequence. The network inputs are the raw video stream from the head camera and the
 12 DoF of the two arms and the total training dataset comprises of about 28000
-steps of data.
+steps of data. Successfully folding towels entails an explicit sequencing of
+actions (therefore implicit temporal modeling). The fact that such a complex
+process can be successfully learned from a very small dataset certainly opens
+many prospects.
 
-We argue that the complexity of mechanisms that such neural networks have been
-able to uncover and model should invite our community to question its
+Indeed, we argue that the complexity of mechanisms that such neural networks
+have been able to uncover and model should invite our community to question its
 applicability to human-robot interactions in general, and sustained, natural
 child-robot interactions in particular.
-
 However, the current lack of an appropriate HRI dataset suitable for the training of
 neural networks hinders this investigation. We present hereafter such a dataset,
 and detail our acquisition methodology.
 
-\subsection{Machine learning and social behaviour}
+\subsection*{Machine Learning and Social Behaviours}
 
-Using interaction datasets to teach robots how to socially behave has been
-previously explored, and can be considered as an extension of the traditional
+The use of interaction datasets to teach robots how to socially behave has been
+previously explored, and can be considered as the extension of the traditional
 learning from demonstration (LfD) paradigms to social interactions (for
 instance~\cite{nehaniv2007imitation,mohammad2015interaction}). Previous examples
 have generally focused on low-level recognition or generation of short,
@@ -135,26 +137,23 @@ Kim \etal~\cite{kim2015pororobot} highlight that applying deep learning to
 visual scene information in an HRI scenario was successful, but that
 generating behaviours for the robot to be able to act in a dynamic and uncertain
 environment remains a challenge.
-
-%They rely on unsupervised learning, with a
-%training stage consisting in clustering behavioural states (a state consist in
-%\emph{behavioural elements} ( joint states of the two interacting agents,
-%associated to the current speech elements, as well as the current joint
-%\emph{spatial formation}), followed by the {WIP]
+They rely on unsupervised learning, with a
+training stage consisting in clustering behavioural states (a state consist in
+\emph{behavioural elements} (joint states of the two interacting agents,
+associated to the current speech elements, as well as the current joint
+\emph{spatial formation}), followed by the \todo[inline]{finish that}.
 
 These examples show the burgeoning interest of our community for the automatic
 learning of social interactions, but also highlight the lack of structure of
-these research efforts, as further illustrated by the quasi-absence of public
-and large datasets of human-robot interactions. To our best knowledge, only the
-$H^3R$ Explanation Corpus~\cite{mohammad2008h} and the Vernissage
-Corpus~\cite{jayagopi2013vernissage} have been published to date. The $H^3R$
-Explanation Corpus is a human-human and human-robot dataset focusing on a
-``assembly/disassembly explanation'' task and includes physiological signals (22
-human-robot interactions), but is not publicly available. the Vernissage Corpus
-includes one museum guide robot interacting with two people (13 interactions in
-total), with recordings and annotations of poses and speech audio (stated to be
-publicly available). Both these corpora are however too small for
-machine-learning applications.
+these research efforts, as further illustrated by the lack of large, open
+datasets of social interactions, suitable for machine-learning applications.
+
+One of the most interesting datasets is the \emph{Multimodal Dyadic Behavior
+Dataset} (\emph{MMDB},~\cite{rehg2013decoding}). It comprises of 160 sessions of
+3 to 5 minute child-adult interactions. During these interactions, the
+experimenter plays with toddlers (1.5 to 2.5 years old) in semi-structured ways
+which was designed to
+elicit a broad range of social behaviors
 
 \todo[inline]{look at child-child datasets!}
 
@@ -446,6 +445,7 @@ Total duration: 30 minutes per group.
 
 \subsection{Dataset availablity}
 \label{availablity}
+
 
 The dataset is freely available to any interested researcher. Due to ethical
 and data protection regulations, the dataset is however made available in two
