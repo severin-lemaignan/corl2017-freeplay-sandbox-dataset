@@ -148,14 +148,21 @@ learning of social interactions, but also highlight the lack of structure of
 these research efforts, as further illustrated by the lack of large, open
 datasets of social interactions, suitable for machine-learning applications.
 
-One of the most interesting datasets is the \emph{Multimodal Dyadic Behavior
+One interesting dataset is the \emph{Multimodal Dyadic Behavior
 Dataset} (\emph{MMDB},~\cite{rehg2013decoding}). It comprises of 160 sessions of
 3 to 5 minute child-adult interactions. During these interactions, the
-experimenter plays with toddlers (1.5 to 2.5 years old) in semi-structured ways
-which was designed to
-elicit a broad range of social behaviors
+experimenter plays with toddlers (1.5 to 2.5 years old) in semi-structured ways.
+The dataset includes video streams of the faces and the room, audio, physiological data
+(electrodermal activity) as well as manual annotations of certain behaviours
+(like gaze to the examiner, laughter, pointing). The lack of calibration and camera positioning
+information in the dataset limits the possibilities of automatically extracting and
+labelling key interaction features (like facial expressions or joint gaze). Besides,
+this dataset focuses on very young children with in adult-driven interactions,
+and as such does not include any episodes of naturally-occurring social
+interactions between peers.
 
-\todo[inline]{look at child-child datasets!}
+\todo[inline]{look at other child-child datasets!}
+\todo[inline]{mention research on deep-learning to diagnostic autism}
 
 \section{The Plymouth Interacting Social Robots Dataset (PInSoRo)}
 
