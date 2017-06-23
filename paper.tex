@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{booktabs}
 
 \usepackage{tikz}
 \usetikzlibrary{math,fpu,calc,fit,mindmap,backgrounds,positioning}
@@ -442,6 +443,8 @@ synchronous recording of the cameras and microphones.
   \end{itemize}
 \end{enumerate}
 
+\todo[inline]{mention robot greetings: expectation that the robot can talk
+(and likely, hear)}
 \todo[inline]{mention idea box}
 \todo[inline]{mention robot calibration phase (between 0 and }
 
@@ -462,7 +465,41 @@ Signature}~\cite{slowinski2016dynamic})
     \label{fig|analysis}
 \end{figure}
 
-\section{Dataset Structure}
+\section{The PInSoRo Dataset}
+
+\subsection{Structure}
+
+The dataset consists in a collection of records. Each record correspond to one
+play interaction between two children. To date (June 2017) \todo[inline]{put
+latest nb} records have been acquired. At the end of the acquisition campaign
+(July 2017), the dataset is planned to include 50 records (\ie 100 children). As
+mentioned above, the duration of each play episode varies ($M=17m13s,
+SD=8m02s$), but it is capped to a maximum of 40 minutes.
+
+\begin{table}[]
+\centering
+\caption{List of datastreams stored in each record}
+\label{table|datastreams}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\bf Domain  & \bf Type                              & \bf Details                              \\ \midrule
+child 1     & audio                                 & 16kHz, mono, semi-directional        \\
+            & face (RGB)                            & qHD (960$\times$540), 30Hz           \\
+            & face (depth)                          & VGA (640$\times$480), 30Hz           \\
+            & facial features                       & 68 3D points (point cloud)           \\ \midrule
+child 2     & audio                                 & 16kHz, mono, semi-directional        \\
+            & face (RGB)                            & qHD (960$\times$540), 30Hz           \\
+            & face (depth)                          & VGA (640$\times$480), 30Hz           \\
+            & facial features                       & 68 3D points (point cloud)           \\ \midrule
+environment & RGB                                   & qHD (960$\times$540), 29.7Hz         \\ \midrule
+touchscreen & background drawing (RGB)              & 4Hz                                  \\
+            & touches                               & 6 points multi-touch                 \\
+            & items position and orientation        &                                      \\ \midrule
+others      & \multicolumn{2}{l}{annotations of social behaviours and remarkable events}   \\
+            & \multicolumn{2}{l}{static transforms between touchscreen and facial cameras} \\
+            & \multicolumn{2}{l}{cameras calibration informations}                         \\ \bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Dataset availability}
 \label{availability}
