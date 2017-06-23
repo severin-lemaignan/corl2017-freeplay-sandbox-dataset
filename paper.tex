@@ -315,14 +315,8 @@ images. The child's age and gender are also available.
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{3d-point-cloud-facial-features}
-    \caption{The freeplay sandbox, viewed at runtime within ROS RViz. The
-    current background drawing (bottom left) is published on a regular image
-    topic. Simple computer vision is used to segment it into zones (visible in
-    the central panel). The poses and bounding boxes of the interactive items
-    are published as well, and turned into an occupancy map, used to plan the
-    robot's arm motion.
-    visualisation tool.}
-    \label{fig|rviz}
+    \caption{Reconstructed 3D point cloud with 68 facial features high-lighted}
+    \label{fig|pointcloud}
 \end{figure}
 
 \subsubsection{Conditions}\label{conditions}
@@ -470,11 +464,16 @@ Signature}~\cite{slowinski2016dynamic})
 \subsection{Structure}
 
 The dataset consists in a collection of records. Each record correspond to one
-play interaction between two children. To date (June 2017) \todo[inline]{put
-latest nb} records have been acquired. At the end of the acquisition campaign
+play interaction between two children. To date (June 2017) 19 records have been acquired. At the end of the acquisition campaign
 (July 2017), the dataset is planned to include 50 records (\ie 100 children). As
 mentioned above, the duration of each play episode varies ($M=17m13s,
 SD=8m02s$), but it is capped to a maximum of 40 minutes.
+
+\todo[inline]{update with last nb before submitting}
+
+Data is collected using the ROS middleware\footnote{\url{http://ros.org}} and
+recorded as \emph{bag} files. Every dataframe is timestamped.
+Table~\ref{table|datastreams} lists all the recorded datastreams.
 
 \begin{table}[]
 \centering
@@ -482,7 +481,7 @@ SD=8m02s$), but it is capped to a maximum of 40 minutes.
 \label{table|datastreams}
 \begin{tabular}{@{}lll@{}}
 \toprule
-\bf Domain  & \bf Type                              & \bf Details                              \\ \midrule
+\bf Domain  & \bf Type                              & \bf Details                          \\ \midrule
 child 1     & audio                                 & 16kHz, mono, semi-directional        \\
             & face (RGB)                            & qHD (960$\times$540), 30Hz           \\
             & face (depth)                          & VGA (640$\times$480), 30Hz           \\
@@ -500,6 +499,18 @@ others      & \multicolumn{2}{l}{annotations of social behaviours and remarkable
             & \multicolumn{2}{l}{cameras calibration informations}                         \\ \bottomrule
 \end{tabular}
 \end{table}
+
+As the data is recorded using ROS's bag files, it can be replayed in the exact
+same conditions as it was during the recording. All the video streams use
+calibrated cameras. While the raw RGB and depth streams are neither rectified
+nor registered together (due to performance considerations during the
+recording), it can be easily achieved as a post-process step, using standard ROS
+tools (the ROS {\tt rgbd\_pipeline}). Pre-configured scripts are available
+alongside the
+dataset\footnote{Available online from
+\url{https://github.com/severin-lemaignan/freeplay-sandbox-analysis}.} to
+republish registered streams and the corresponding 3D point-clouds (as seen in
+Figure~\ref{fig|pointcloud}).
 
 \subsection{Dataset availability}
 \label{availability}
