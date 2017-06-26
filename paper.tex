@@ -163,7 +163,7 @@ and as such does not include any episodes of naturally-occurring social
 interactions between peers.
 
 \todo[inline]{look at other child-child datasets!}
-\todo[inline]{mention research on deep-learning to diagnostic autism}
+\todo[inline]{mention research on deep-learning to diagnose autism}
 
 \section{The Plymouth Interacting Social Robots Dataset (PInSoRo)}
 
@@ -171,81 +171,81 @@ interactions between peers.
     best name?}
 
 The Plymouth Interacting Social Robots (PInSoRo) Dataset comprises of natural
-social interactions arising between children, and recorded in a way suitable
-for research methodologies based on machine learning.
+social interactions arising between children, and recorded with machine learning
+applications in mind.
 
 As detailed in section~\ref{availability}, this dataset is open and made freely
 available to any interested researcher. It is intended to be used to train
-machine-learning algorithms (typically, deep recurrent network) to both
+machine-learning algorithms (typically, deep recurrent networks) to both
 recognise and generate complex cognitive and social dynamics occurring in the
 wild during social interactions.
 
 \subsection{The Freeplay Sandbox}
 
-The acquisition of such a dataset requires first the definition of a
-task to be performed by the participants while they are recorded. The nature of
-this task influences in fundamental way the kind of interactions that might be
-observed, and thus, learned.  Because they usually target very specific social
-or cognitive skills in a tightly controlled manner, traditional socio-cognitive tasks are
-either toy scenarios (\ie they do not adequately mirror real-world situations)
-or simple, constrained tasks that do not reflect the complexity and dynamics of
-real-world interactions. For this dataset, we aim on the contrary at a rich set
-of naturally-occurring social interactions, and as such we have designed a novel
-task that:
-
-\begin{itemize}
-    \item is fundamentally social, \ie the task would make little sense for an
-        agent alone;
-    \item elicit a large range of interaction situations;
-    \item foster rich multi-modal interaction: simultaneous speech, gesture, and gaze
-        behaviours are to be observed;
-    \item foster non-trivial social dynamics, such as implicit turn-taking.
-\end{itemize}
-
-This new experimental task is based on \emph{free play} interactions. Pairs of
-children (4-7 years old) are invited to freely draw and interact with items
-displayed on an interactive table, telling and acting stories with no explicit
-goal set in advance (Fig.~\ref{fig|setup}).
-
-As a result, the interaction space is high-dimensional, along two main axis: the
-game-related actions (drawing, manipulating items) and the social interactions
-(looking at the other's actions, skink
-ocial interaction situation based on
-free dramatic play: 
-Critically we propose to limit these tasks to
-\emph{face-to-face} social interactions, either dyadic or triadic. This constrains the dataset to
-a more tractable domain, and should ensure technical feasibility. 
-
-
-
-
-, free play social
-interactions exhibit a rich set of natural cognitive and social dynamics that
-are desirable.
-
-
 \begin{figure}
     \centering
     \includegraphics[width=0.4\linewidth]{setup-child-child.png}
     \hspace{1em}
-    \includegraphics[width=0.4\linewidth]{setup-child-robot.png}
-    \caption{The free play social interactions sandbox. Data acquisition is
-    performed under two (between subjets) conditions: either children playing together, or one
-    child playing with a \emph{non-social} robot.}
+    \includegraphics[width=0.4\linewidth]{child-child-env}
+    \caption{The free play social interactions sandbox: two children interact in
+    Da free-play situation, by drawing and manipulating items on a touchscreen.}
     \label{fig|setup}
 \end{figure}
 
-To mitigate the technical challenges presented by free play interactions in
-their most unconstrained version (like
-high dimensionality and uncertainties), we have developped a \emph{free play
-sandbox}, Figure~\ref{fig|setup}: a large touchscreen (60cm $\times$ 33cm) is
-used as an interactive surface (\emph{sandtray}
-paradigm~\cite{baxter2012touchscreen}). Two agents (either a pair of children or
-one child and one robot) play together by freely moving on a 2D plane items
-(characters and blocks, see Figure~\ref{fig|sandbox}). A background image
+The acquisition of such a dataset requires first the definition of a suitable
+task for the participants to perform while they are recorded. The nature of
+this task influences in fundamental ways the kind of interactions that might be
+observed, and thus, learned. Because they usually target very specific social
+or cognitive skills in a tightly controlled manner, traditional socio-cognitive tasks are
+usually simple, constrained tasks that do not reflect the complexity and dynamics of
+real-world interactions. On the contrary, this dataset aims at capturing a rich set
+of naturally-occurring social interactions. As such, a suitable task has to be:
+
+\begin{itemize}
+    \item elicit a large range of interaction situations;
+    \item foster rich multi-modal interaction: simultaneous speech, gesture, and gaze
+        behaviours are to be observed;
+    \item fundamentally social, \ie the task would make little sense for an
+        agent alone;
+    \item foster non-trivial social dynamics, such as implicit turn-taking.
+\end{itemize}
+
+We present a new experimental task based on \emph{free play} interactions. Pairs of
+children (4-7 years old) are invited to freely draw and interact with items
+displayed on an interactive table, telling and acting stories with no explicit
+goal set in advance (Fig.~\ref{fig|setup}).
+
+In order to constraint the dataset to a tractable domain, the task is limited to
+a dyadic \emph{face-to-face} interaction.  The resulting interaction space is
+nevertheless high-dimensional, with two main axis: the game-related actions
+(drawing, manipulating items, telling stories) and the social interactions
+(monitoring the other's actions, discussing and agreeing on joint actions,
+helping behaviours, etc.).
+
+The \emph{freeplay sandbox} follows the sandtray
+paradigm~\cite{baxter2012touchscreen}: a large touchscreen (60cm $\times$ 33cm,
+multitouch) is used as an interactive surface (\emph{sandtray}). The two children play together
+by freely moving interactive items (Fig.~\ref{fig|sandbox}) on the surface. A background image
 depicts a generic empty environment, with different symbolic zones (water,
 grass, path, bushes...). The players do not have any particular task to
 complete, they are simply invited to freely play.
+is implemented wit To mitigate the technical challenges presented by free play interactions in
+their most unconstrained version (like
+high dimensionality and uncertainties), we have developped a \emph{free play
+sandbox}, Fig.~\ref{fig|setup}: 
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{sandbox}
+    \caption{Example of a game situation: the two children `build'
+    together a zoo. Items (animals, characters...) can be dragged over the whole
+    play area, while the background picture can be painted over by picking a
+    colour.}
+    \label{fig|sandbox}
+\end{figure}
+
+
 
 
 children can engage in open-ended and
@@ -273,15 +273,6 @@ search team may progressively extend their cognitive models
 to incorporate more and more of the cognitive capabilities
 required by the robot to address all of the tasks.
 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{sandbox}
-    \caption{Example of a game situation: the child and the robot `build'
-    together a zoo. Items (animals, characters...) can be dragged over the whole
-    play area, while the background picture can be painted over.}
-    \label{fig|sandbox}
-\end{figure}
 
 
 \subsubsection{Implementation}
