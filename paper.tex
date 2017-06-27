@@ -188,8 +188,8 @@ wild during social interactions.
     \hspace{1em}
     \includegraphics[width=0.4\linewidth]{child-child-env}
     \caption{The free play social interactions sandbox: two children interact in
-    Da free-play situation, by drawing and manipulating items on a touchscreen.}
-    \label{fig|setup}
+    a free-play situation, by drawing and manipulating items on a touchscreen.}
+    \label{fig|freeplay}
 \end{figure}
 
 The acquisition of such a dataset requires first the definition of a suitable
@@ -210,10 +210,32 @@ of naturally-occurring social interactions. As such, a suitable task has to be:
     \item foster non-trivial social dynamics, such as implicit turn-taking.
 \end{itemize}
 
-We present a new experimental task based on \emph{free play} interactions. Pairs of
-children (4-7 years old) are invited to freely draw and interact with items
+We present a new experimental task based on \emph{free play} interactions. Pairs
+of children (4-7 years old) are invited to freely draw and interact with items
 displayed on an interactive table, telling and acting stories with no explicit
-goal set in advance (Fig.~\ref{fig|setup}).
+goal set in advance (Fig.~\ref{fig|freeplay}). The task is designed so that
+children can engage in open-ended and non-directive play situations, yet
+sufficiently well defined to be controlled, suitable for detailled recording,
+and easily reproducible.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{sandbox}
+    \caption{Example of a possible game situation. Items (animals,
+    characters...) can be dragged over the whole play area, while the background
+    picture can be painted over by picking a colour.}
+
+    \label{fig|sandbox}
+\end{figure}
+
+The \emph{freeplay sandbox} follows the sandtray
+paradigm~\cite{baxter2012touchscreen}: a large touchscreen (60cm $\times$ 33cm,
+with multitouch support) is used as an interactive surface (\emph{sandtray}). The two children play together
+by freely moving interactive items (Fig.~\ref{fig|sandbox}) on the surface. A background image
+depicts a generic empty environment, with different symbolic colours (water,
+grass, beach, bushes...). By drawing on top of the background picture, the
+children can also alter this environment to their liking. The players do not have any particular task to
+complete, they are simply invited to freely play for as long as they wish.
 
 In order to constraint the dataset to a tractable domain, the task is limited to
 a dyadic \emph{face-to-face} interaction.  The resulting interaction space is
@@ -222,77 +244,141 @@ nevertheless high-dimensional, with two main axis: the game-related actions
 (monitoring the other's actions, discussing and agreeing on joint actions,
 helping behaviours, etc.).
 
-The \emph{freeplay sandbox} follows the sandtray
-paradigm~\cite{baxter2012touchscreen}: a large touchscreen (60cm $\times$ 33cm,
-multitouch) is used as an interactive surface (\emph{sandtray}). The two children play together
-by freely moving interactive items (Fig.~\ref{fig|sandbox}) on the surface. A background image
-depicts a generic empty environment, with different symbolic zones (water,
-grass, path, bushes...). The players do not have any particular task to
-complete, they are simply invited to freely play.
-is implemented wit To mitigate the technical challenges presented by free play interactions in
-their most unconstrained version (like
-high dimensionality and uncertainties), we have developped a \emph{free play
-sandbox}, Fig.~\ref{fig|setup}: 
+%
+%\paragraph{Socio-cognitive framing of the task}
+%
+%
+%focus on abstract socio-cognitive facets (robot
+%perception and manipulation are simplified); well suited for qualitative and
+%quantitative analysis using metrics like Słowinski’s Individual Motor Signature
+%(for behavioural alignment), Anderson's~\cite{anderson2004social} coding of children’s free-play
+%interactions, with-me-ness (for assessment of co-engagment).
+%
+%carefully framed: as far as possible, they necessitate only the cognitive
+%capabilities that they evidence (e.g. if they evidence a purely socio-linguistic
+%mechanism, they will not mandate complex action capabilities – they may benefit
+%from it, though),
+%
+%This point is especially important as it allows an incremental path: a robot
+%should be able to tackle one or several of these task independently of the
+%others, and a research team may progressively extend their cognitive models to
+%incorporate more and more of the cognitive capabilities required by the robot to
+%address all of the tasks.
 
 
-\begin{figure}
+
+\subsection{Dataset structure}
+
+The dataset consists in a collection of records. Each record correspond to one
+play interaction between two children. To date (June 2017) 19 records have been acquired. At the end of the acquisition campaign
+(July 2017), the dataset is planned to include 50 records (\ie 100 children). As
+mentioned above, the duration of each play episode varies ($M=17m13s,
+SD=8m02s$), but it is capped to a maximum of 40 minutes.
+
+\todo[inline]{update with last nb before submitting}
+
+Data is collected using the ROS middleware\footnote{\url{http://ros.org}} and
+recorded as \emph{bag} files. Every dataframe is timestamped.
+Table~\ref{table|datastreams} lists all the recorded datastreams.
+
+\begin{table}[]
+\centering
+\caption{List of datastreams stored in each record}
+\label{table|datastreams}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\bf Domain  & \bf Type                              & \bf Details                          \\ \midrule
+child 1     & audio                                 & 16kHz, mono, semi-directional        \\
+            & face (RGB)                            & qHD (960$\times$540), 30Hz           \\
+            & face (depth)                          & VGA (640$\times$480), 30Hz           \\
+            & facial features                       & 68 3D points (point cloud)           \\ \midrule
+child 2     & audio                                 & 16kHz, mono, semi-directional        \\
+            & face (RGB)                            & qHD (960$\times$540), 30Hz           \\
+            & face (depth)                          & VGA (640$\times$480), 30Hz           \\
+            & facial features                       & 68 3D points (point cloud)           \\ \midrule
+environment & RGB                                   & qHD (960$\times$540), 29.7Hz         \\ \midrule
+touchscreen & background drawing (RGB)              & 4Hz                                  \\
+            & touches                               & 6 points multi-touch                 \\
+            & items position and orientation        &                                      \\ \midrule
+others      & \multicolumn{2}{l}{annotations of social behaviours and remarkable events}   \\
+            & \multicolumn{2}{l}{static transforms between touchscreen and facial cameras} \\
+            & \multicolumn{2}{l}{cameras calibration informations}                         \\ \bottomrule
+\end{tabular}
+\end{table}
+
+As the data is recorded using ROS's bag files, it can be replayed in the exact
+same conditions as it was during the recording. All the video streams use
+calibrated cameras. Only the raw RGB and depth video streams are recorded. While
+the raw RGB and depth streams are neither rectified nor registered together (due
+to performance considerations during the recording), it can be easily achieved
+as a post-process step, using standard ROS tools (the ROS {\tt rgbd\_pipeline}).
+Pre-configured scripts are available alongside the dataset\footnote{Available
+online from
+\url{https://github.com/severin-lemaignan/freeplay-sandbox-analysis}.} to
+republish registered streams and the corresponding 3D point-clouds (as seen in
+Fig.~\ref{fig|rviz}, left).
+
+\subsection{Hardware and Software}
+
+\paragraph{Hardware}
+The sandtray is made of a 27" Samsung All-In-One computer running Ubuntu Linux
+and equipped with a fast 1TB SSD hard-drive. The computer is held horizontal in
+a custom aluminium frame standing 26cm above the ground
+(Fig.~\ref{fig|freeplay}, right). All the cameras are plugged directly over
+USB-3 to the computer. The computer performs all the data acquisition using ROS
+Kinetic.
+
+The children faces are recorded from two Intel RealSense SR300 RGB-D cameras
+(short range, 0.2m to 1.2m, indoor RGB-D cameras), placed at the corners of the
+the sandtray (Figs.~\ref{fig|rviz} and~\ref{fig|setup}), and tilted to face the
+children. The cameras are rigidly mounted on custom 3D-printed brackets, and
+their 6D pose with respect to the sandtray screen is precisely known and
+recorded (this enables in particular accurate estimation of the children's head
+pose).
+
+Audio is recorded from the same SR300 cameras (one audio stream is recorded for
+each child, from the camera facing her/him).
+
+Finally, a third RGB camera (the RGB stream of a Microsoft Kinect One) records
+the whole interaction setting. These video stream is intended to support human
+coders while annontating the interaction, and is not precisely calibrated.
+
+\begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.9\linewidth]{sandbox}
-    \caption{Example of a game situation: the two children `build'
-    together a zoo. Items (animals, characters...) can be dragged over the whole
-    play area, while the background picture can be painted over by picking a
-    colour.}
-    \label{fig|sandbox}
-\end{figure}
-
-
-
-
-children can engage in open-ended and
-non-directive play situations, yet sufficiently
-defined to be reproducible; 
-
-\subsubsection{Socio-cognitive Framing}
-
-focus on abstract socio-cognitive facets (robot
-perception and manipulation are simplified); well suited for qualitative and
-quantitative analysis using metrics like Słowinski’s Individual Motor Signature
-(for behavioural alignment), Anderson's~\cite{anderson2004social} coding of children’s free-play
-interactions, with-me-ness (for assessment of co-engagment).
-
-carefully framed: as far as possible, they ne-
-cessitate only the cognitive capabilities that they ev-
-idence (e.g. if they evidence a purely socio-linguistic
-mechanism, they will not mandate complex action ca-
-pabilities – they may benefit from it, though),
-
-This point is especially important as it allows an
-incremental path: a robot should be able to tackle one or
-several of these task independently of the others, and a re-
-search team may progressively extend their cognitive models
-to incorporate more and more of the cognitive capabilities
-required by the robot to address all of the tasks.
-
-
-
-\subsubsection{Implementation}
-
-The sandbox is implemented using mainly two frameworks: the Qt's \emph{QtQuick} framework
-for the graphical interface of the game, and the \emph{Robot Operating System}
-(ROS) for the modular implementation of the data processing and behaviour
-generation pipelines.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{rviz-sandtray}
-    \caption{The freeplay sandbox, viewed at runtime within ROS RViz. The
+    \includegraphics[width=0.5\linewidth]{rviz-sandtray}
+    \hspace{0.2em}
+    \includegraphics[width=0.48\linewidth]{3d-point-cloud-facial-features}
+    \caption{The freeplay sandbox, visualised at runtime with ROS RViz. The
     current background drawing is published on a regular image
     topic and computer vision is used to segment it into zones (visible in
-    the central panel). The poses and bounding boxes of the interactive items
-    are published as well, and turned into an occupancy map, used to plan the
-    robot's arm motion.}
+    the central panel, right picture). The poses of the interactive items
+    are published, as well as an estimate of the children's head pose.
+    The left picture shows a reconstructed 3D point cloud of one child face,
+    along with the detected 68 facial features.}
     \label{fig|rviz}
 \end{figure}
+
+\paragraph{Software}
+The sandbox is implemented with two frameworks: the Qt's \emph{QtQuick} framework
+for the graphical interface of the game, and the \emph{Robot Operating System}
+(ROS) for the modular implementation of the data processing and data acquisition
+pipelines. A dedicated bridge between QtQuick and ROS has been specifically
+developped to enable the game interface to export the positions of every
+iteractive items as they move, the background image whenever it is painted over,
+and the children's touches. The game interface is open-source and available online:
+\url{https://github.com/severin-lemaignan/freeplay-sandbox-qt}.
+
+By relying on ROS for the data acquisition, real-time monitoring of the
+interaction is also possible (Fig.~\ref{fig|rviz}).
+The ROS data acquisition pipeline is open-source as well, and available from
+\url{https://github.com/severin-lemaignan/freeplay-sandbox-ros}.
+
+Finally, we have developped a web-based \emph{supervisor} that permits the
+experimenter to remotely start/stop the ROS nodes and the game GUI, as well as to
+record annotations during the experiment. The supervisor ensures that the exact
+same recording procedure (detailled in the next section) is followed for every
+participants. The supervisor is available online as well:
+\url{https://github.com/severin-lemaignan/freeplay-sandbox-supervisor}.
 
 \subsection{Dataset Acquisition}
 
@@ -302,13 +388,6 @@ participants explicitly consented to sharing of their child's video and audio
 with the research community. The data is labelled with a unique participant code
 only and does not contain any identifying information, except the participant's
 images. The child's age and gender are also available.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{3d-point-cloud-facial-features}
-    \caption{Reconstructed 3D point cloud with 68 facial features high-lighted}
-    \label{fig|pointcloud}
-\end{figure}
 
 \subsubsection{Conditions}\label{conditions}
 
@@ -350,6 +429,7 @@ both children (Condition A, Figure 5 left) or the child and the robot
     \includegraphics[width=0.4\linewidth]{setup_child_robot_top}
     \caption{Experimental setup, child-child condition (left) and child-robot
     condition (right).}
+    \label{fig|setup}
 \end{figure}
 
 The experimenter stays in the room, visible to the child. When
@@ -452,58 +532,6 @@ Signature}~\cite{slowinski2016dynamic})
     \label{fig|analysis}
 \end{figure}
 
-\section{The PInSoRo Dataset}
-
-\subsection{Structure}
-
-The dataset consists in a collection of records. Each record correspond to one
-play interaction between two children. To date (June 2017) 19 records have been acquired. At the end of the acquisition campaign
-(July 2017), the dataset is planned to include 50 records (\ie 100 children). As
-mentioned above, the duration of each play episode varies ($M=17m13s,
-SD=8m02s$), but it is capped to a maximum of 40 minutes.
-
-\todo[inline]{update with last nb before submitting}
-
-Data is collected using the ROS middleware\footnote{\url{http://ros.org}} and
-recorded as \emph{bag} files. Every dataframe is timestamped.
-Table~\ref{table|datastreams} lists all the recorded datastreams.
-
-\begin{table}[]
-\centering
-\caption{List of datastreams stored in each record}
-\label{table|datastreams}
-\begin{tabular}{@{}lll@{}}
-\toprule
-\bf Domain  & \bf Type                              & \bf Details                          \\ \midrule
-child 1     & audio                                 & 16kHz, mono, semi-directional        \\
-            & face (RGB)                            & qHD (960$\times$540), 30Hz           \\
-            & face (depth)                          & VGA (640$\times$480), 30Hz           \\
-            & facial features                       & 68 3D points (point cloud)           \\ \midrule
-child 2     & audio                                 & 16kHz, mono, semi-directional        \\
-            & face (RGB)                            & qHD (960$\times$540), 30Hz           \\
-            & face (depth)                          & VGA (640$\times$480), 30Hz           \\
-            & facial features                       & 68 3D points (point cloud)           \\ \midrule
-environment & RGB                                   & qHD (960$\times$540), 29.7Hz         \\ \midrule
-touchscreen & background drawing (RGB)              & 4Hz                                  \\
-            & touches                               & 6 points multi-touch                 \\
-            & items position and orientation        &                                      \\ \midrule
-others      & \multicolumn{2}{l}{annotations of social behaviours and remarkable events}   \\
-            & \multicolumn{2}{l}{static transforms between touchscreen and facial cameras} \\
-            & \multicolumn{2}{l}{cameras calibration informations}                         \\ \bottomrule
-\end{tabular}
-\end{table}
-
-As the data is recorded using ROS's bag files, it can be replayed in the exact
-same conditions as it was during the recording. All the video streams use
-calibrated cameras. While the raw RGB and depth streams are neither rectified
-nor registered together (due to performance considerations during the
-recording), it can be easily achieved as a post-process step, using standard ROS
-tools (the ROS {\tt rgbd\_pipeline}). Pre-configured scripts are available
-alongside the
-dataset\footnote{Available online from
-\url{https://github.com/severin-lemaignan/freeplay-sandbox-analysis}.} to
-republish registered streams and the corresponding 3D point-clouds (as seen in
-Figure~\ref{fig|pointcloud}).
 
 \subsection{Dataset availability}
 \label{availability}
@@ -518,7 +546,7 @@ streams. This second version is freely available as well, but interested
 researchers must first fill a data protection form.
 
 
-\section{Discussion}
+\section{Applications}
 
 \subsection{Specific research questions}
 
