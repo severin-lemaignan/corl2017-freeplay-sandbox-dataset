@@ -517,21 +517,30 @@ synchronous recording of the cameras and microphones.
 
 Total duration: between 20-50 min.
 
-\subsubsection{Initial Dataset Analysis}
+\subsection{Annotations of Social Behaviours}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{analysis}
+    \caption{Screenshot of the interaction analysis tool: key record information
+    are played back in a synchronised (faces and audio of the two children,
+    interaction occuring on the interactive table, etc.) while the human coder
+    annotate the record timeline with social situations of interest.}
+    \label{fig|analysis}
+\end{figure}
+
+
 
 analysis of behavioural alignment between partners (via
 metrics like the recently proposed \emph{Individual Motor
 Signature}~\cite{slowinski2016dynamic})
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{analysis}
-    \caption{Screenshot of the interaction analysis tool: faces of the two
-    children are recorded, as well as any interaction occuring on the
-    interactive table.}
-    \label{fig|analysis}
-\end{figure}
+Słowinski’s Individual Motor Signature
+(for behavioural alignment), Anderson's~\cite{anderson2004social} coding of children’s free-play
+interactions,
 
+\cite{olswang2006reliability}
 
 \subsection{Dataset availability}
 \label{availability}
@@ -549,44 +558,44 @@ researchers must first fill a data protection form.
 \section{Applications}
 
 \subsection{Specific research questions}
-
-\begin{figure}
-\centering
-
-\resizebox{0.8\linewidth}{!}{%
-\begin{tikzpicture}[
-                font=\sffamily,
-                >=latex,
-                every edge/.style={draw, very thick},
-                node/.style={draw, rounded corners, align=center, inner sep=5pt, fill=black!20},
-                label/.style={midway, align=center, font=\scriptsize\sffamily, fill=white}]
-
-    %%% NODES
-    \node [node] (mentalrepresentations) {Mental Representations};
-    \node [above left=of mentalrepresentations] (gameactions) {\it game actions};
-    \node [node, above=of gameactions] (gamedynamics) {Game dynamics};
-    \node [above right=of mentalrepresentations] (socialactions) {\it social actions};
-    \node [node, above=of socialactions ] (socialdynamics) {Social Dynamics};
-
-    %%% CONNECTIONS
-    \path (gamedynamics) edge [<->, dashed] node[label, above] {?}(socialdynamics);
-    \path (gamedynamics) edge [<-, bend right] node[label] {mediate}(gameactions);
-    \path (socialactions) edge [->, bend left] node[label] {reflect}(mentalrepresentations);
-    \path (socialactions) edge [->, dashed] node[label,above] {?}(gamedynamics);
-    \path (gameactions) edge [->, dashed] node[label,above] {?}(socialdynamics);
-    \path (gameactions) edge [->, bend right] node[label] {reflect}(mentalrepresentations);
-    \path (socialdynamics) edge [<-, bend left] node[label] {shape}(socialactions);
-
-\end{tikzpicture}
-}
-\label{fig|researchquestions}
-\caption{Game dynamics, social dynamics and mental representations are linked
-    with each other through social actions (implicit and explicit communication)
-    and actions on the environment (mainly game actions)}
-\end{figure}
-
-The mechanisms underlying the social interactions happening during free play
-raise important questions for social robotics.
+%
+%\begin{figure}
+%\centering
+%
+%\resizebox{0.8\linewidth}{!}{%
+%\begin{tikzpicture}[
+%                font=\sffamily,
+%                >=latex,
+%                every edge/.style={draw, very thick},
+%                node/.style={draw, rounded corners, align=center, inner sep=5pt, fill=black!20},
+%                label/.style={midway, align=center, font=\scriptsize\sffamily, fill=white}]
+%
+%    %%% NODES
+%    \node [node] (mentalrepresentations) {Mental Representations};
+%    \node [above left=of mentalrepresentations] (gameactions) {\it game actions};
+%    \node [node, above=of gameactions] (gamedynamics) {Game dynamics};
+%    \node [above right=of mentalrepresentations] (socialactions) {\it social actions};
+%    \node [node, above=of socialactions ] (socialdynamics) {Social Dynamics};
+%
+%    %%% CONNECTIONS
+%    \path (gamedynamics) edge [<->, dashed] node[label, above] {?}(socialdynamics);
+%    \path (gamedynamics) edge [<-, bend right] node[label] {mediate}(gameactions);
+%    \path (socialactions) edge [->, bend left] node[label] {reflect}(mentalrepresentations);
+%    \path (socialactions) edge [->, dashed] node[label,above] {?}(gamedynamics);
+%    \path (gameactions) edge [->, dashed] node[label,above] {?}(socialdynamics);
+%    \path (gameactions) edge [->, bend right] node[label] {reflect}(mentalrepresentations);
+%    \path (socialdynamics) edge [<-, bend left] node[label] {shape}(socialactions);
+%
+%\end{tikzpicture}
+%}
+%\label{fig|researchquestions}
+%\caption{Game dynamics, social dynamics and mental representations are linked
+%    with each other through social actions (implicit and explicit communication)
+%    and actions on the environment (mainly game actions)}
+%\end{figure}
+%
+%The mechanisms underlying the social interactions happening during free play
+%raise important questions for social robotics.
 
 
 \subsubsection{Game Dynamics}
