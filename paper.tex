@@ -112,10 +112,10 @@ many prospects.
 Indeed, we argue that the complexity of mechanisms that such neural networks
 have been able to uncover and model should invite our community to question its
 applicability to human-robot interactions in general, and sustained, natural
-child-robot interactions in particular.
-However, the current lack of an appropriate HRI dataset suitable for the training of
-neural networks hinders this investigation. We present hereafter such a dataset,
-and detail our acquisition methodology.
+child-robot interactions in particular.  However, the current lack of an
+appropriate HRI dataset suitable for the training of neural networks hinders
+this investigation. We present hereafter such a dataset, and detail our
+acquisition methodology.
 
 \subsection*{Machine Learning and Social Behaviours}
 
@@ -184,7 +184,7 @@ wild during social interactions.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\linewidth]{setup-child-child.png}
+    \includegraphics[width=0.55\linewidth]{setup-child-child.png}
     \hspace{1em}
     \includegraphics[width=0.4\linewidth]{child-child-env}
     \caption{The free play social interactions sandbox: two children interact in
@@ -270,12 +270,10 @@ helping behaviours, etc.).
 \subsection{Dataset structure}
 
 The dataset consists in a collection of records. Each record correspond to one
-play interaction between two children. To date (June 2017) 19 records have been acquired. At the end of the acquisition campaign
-(July 2017), the dataset is planned to include 50 records (\ie 100 children). As
-mentioned above, the duration of each play episode varies ($M=17m13s,
-SD=8m02s$), but it is capped to a maximum of 40 minutes.
-
-\todo[inline]{update with last nb before submitting}
+play interaction between two children. To date (June 2017) 25 records have been acquired (\ie 50 children). At the end of the acquisition campaign
+(July 2017), the dataset is planned to include 50 records. As
+mentioned above, the duration of each play episode varies ($M=20m51s,
+SD=10m40s$), but it is capped to a maximum of 40 minutes.
 
 Data is collected using the ROS middleware\footnote{\url{http://ros.org}} and
 recorded as \emph{bag} files. Every dataframe is timestamped.
@@ -299,7 +297,7 @@ child 2     & audio                                 & 16kHz, mono, semi-directio
 environment & RGB                                   & qHD (960$\times$540), 29.7Hz         \\ \midrule
 touchscreen & background drawing (RGB)              & 4Hz                                  \\
             & touches                               & 6 points multi-touch                 \\
-            & items position and orientation        &                                      \\ \midrule
+            & items position and orientation        & ($x,y,\theta$)                       \\ \midrule
 others      & \multicolumn{2}{l}{annotations of social behaviours and remarkable events}   \\
             & \multicolumn{2}{l}{static transforms between touchscreen and facial cameras} \\
             & \multicolumn{2}{l}{cameras calibration informations}                         \\ \bottomrule
@@ -374,20 +372,15 @@ participants. The supervisor is available online as well:
 
 \subsection{Dataset Acquisition}
 
-All data has been collected by researchers at the Plymouth University, under a
-protocol approved by the university ethics committee. The parents of the
-participants explicitly consented to sharing of their child's video and audio
-with the research community. The data is labelled with a unique participant code
-only and does not contain any identifying information, except the participant's
-images. The child's age and gender are also available.
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{setup_child_child_top}
     %\hspace{1.5cm}
     %\includegraphics[width=0.4\linewidth]{setup_child_robot_top}
     %\caption{Experimental setup, child-child condition (left) and child-robot condition (right).}
-    \caption{Experimental setup}
+    \caption{Experimental setup. Children are facing each other and sit on
+    cushions. Each child wears a bright sport bib, either purple or yellow, to
+    facilitate later identification.}
     \label{fig|setup}
 \end{figure}
 
@@ -402,87 +395,42 @@ y.o. (Y1/Y2)
 
 Normally developing children, from local primary schools and nurseries.
 
+\paragraph{Acquisition Procedure}
 
+The following acquisition procedure has been followed with all participants.
 
-\subsubsection{Experimental Setup}\label{experimental-setup}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+    \begin{tabular}{@{}p{0.2\linewidth}p{0.8\linewidth}@{}}
+\toprule
+\bf Welcome                       & \tabitem explain the purpose of the study: showing robots how children play  \\
+\emph{(about 5 min)}              & \tabitem briefly present a Nao robot -- the robot stands up, gives a short
+                                    message (\emph{"Hello, I'm Nao. Today, I'll be watching you while you
+                                    play and soon I'll be able to play with you. Is that alright?"}), and
+                                    sit down. The robot is then put aside and does not intervene anymore
+                                    for the remaining of the experiment; \\
+                                    %Condition B: "Hello, I'm Nao. Today I'll be playing with you. Exciting!")\\ 
+                                  & \tabitem place children on cushions  \\ 
+                                  & \tabitem give them the yellow/purple sport
+                                  bibs and make sure their hair is tied \\ 
+                                  & \tabitem complete demographics on the tablet \\
+                                  & \tabitem remind the children that they can withdraw at anytime \\ \midrule
+\bf Visual focus task             &  \\ 
+\emph{(30 sec)}                   &  \\ \midrule
+\bf Tutorial                      & explain how to interact with the game, ensure the children are confident with the manipulation/drawing \\ 
+\emph{(1-2 min)}                  &  \\ \midrule
+\bf Item placement game           &  \\
+\emph{(5 to 10 min)}              &  \\ \midrule
+\bf Freeplay task                 & \tabitem start the recording \\
+\emph{(up to 40 min)}             & \tabitem initial prompt: \emph{"Just to remind you, you can use the animals or draw. Whatever you
+                                  like. If you run out of ideas, there's also an ideas box. For example, the first one is a
+                                  zoo. You could draw a zoo or tell a story. When you get bored or don't want to play
+                                  anymore, just let me know."} \\
+                                  & \tabitem let children play \\
+                                  & \tabitem once they wish to stop, stop recording \\ \midrule
+\bf Debriefing                    &  \tabitem answer possible questions from the children \\
+\emph{(about 2 min)}              & \tabitem give stickers as a thank you \\ \bottomrule
+\end{tabular}
 
-On large touchscreen, mounted on a horizontal frame (\emph{sandtray});
-both children (Condition A, Figure 5 left) or the child and the robot
-(Condition B, Figure 5 right) are facing each other.
-
-
-\subsubsection{Acquisition Procedure}
-
-
-
-\begin{enumerate}
-\item
-  Welcome (5 min):
-
-  \begin{itemize}
-  \item
-    \textbf{explain the purpose of the study: showing robots how
-    children play}
-    \item
-    briefly present the robot -- it gives a short message dependent on condition (Condition A: "Hello, I'm Nao. Today, I'll be watching you while you play and soon I'll be able to play with you. Is that alright?"; Condition B: "Hello, I'm Nao. Today I'll be playing with you. Exciting!")
-  \item
-    place children on cushions
-  \item
-    give them the yellow/purple sport bibs
-  \item
-    make sure their hair is tied back (to help with face tracking)
-  \item
-    ask names (but do not write them down)
-  \item
-     complete questionnaire on the tablet -- age, gender, familiarity with
-    tablet
-  \item
-    \textbf{remind the children that they can withdraw at anytime}
- 
-  \end{itemize}
-\item
-  Visual focus task (30 seconds)
-\item
-  Tutorial (1-2 min): explain how to interact with the game, ensure the
-  children are confident with the manipulation/drawing
-%CERE Are we mentioning the object placement task?
-\item
-  Freeplay task (up to 40 min):
-
-  \begin{itemize}
-  \item
-    start the recording
-  \item 
-     Condition B only: Set up and localise robot (1-3 min)
-  \item
-    example prompt: ``Just to remind you, you can use the animals or draw. Whatever you like. 
-    If you run out of ideas, there's also an ideas box. For example, the first one is a zoo. You could draw a zoo or tell a story. 
-    When you get bored or 
-    don't want to play anymore, just let me know."
-  \item
-    let children play
-  \item
-    encourage children to keep playing at least 5 min
-  \item
-    once they wish to stop, stop recording
-  \end{itemize}
-\item
-  Debriefing (5 min):
-  
-  \begin{itemize}
-  \item
-    answer possible questions from the children
-  \item
-    give stickers as a thank you
-  \end{itemize}
-\end{enumerate}
-
-\todo[inline]{mention robot greetings: expectation that the robot can talk
-(and likely, hear)}
-\todo[inline]{mention idea box}
-\todo[inline]{mention robot calibration phase (between 0 and }
-
-Total duration: between 20-50 min.
 
 \subsection{Data post-processing}
 
@@ -507,6 +455,38 @@ front of the camera), large head rotations or quick child motion.
 
 \subsection{Annotations of Social Behaviours}
 
+The last part of the dataset consist in annotations of the
+children's social behaviours. Some of these behaviours are automatically
+computed and coded (mutual gaze, for instance), some are human-coded.
+
+The annotations are integrated in the dataset as a timestamped datastream.
+
+\paragraph{Human-coded social behaviours}
+
+We use the \emph{Social Communication Coding System} proposed by
+Olswang~\etal\cite{olswang2006reliability}. It consists in 6 constructs
+characterising social communication (table~\ref{table|sccs}).
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\caption{Constructs of the Social Communication Coding System (SCCS), taken from~\cite{olswang2006reliability}}
+\label{table|sccs}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lp{0.8\linewidth}@{}}
+\toprule
+\bf Construct          & \bf Description                                                                                                                                                                                                                                                                                                                                           \\ \midrule
+Hostile/coercive   & anti-social behavior ; examples include grabbing, hitting, taunting, provoking, yelling.                                                       \\
+Prosocial/engaged  & engaged in a positive social interaction ; examples include on-task work or conversations, helping, sharing, and compromising.                 \\
+Assertive          & child stating a position or opinion ; examples include asserting beliefs (verbally or nonverbally), directing the partner.                     \\
+Passive/disengaged & lack of involvement in the, activity, physical disengagement ; examples include staring into space, putting head down, speaking quite softly, and walking away from an activity.\\
+Adult seeking      & effort to seek assistance or attention from an adult ; examples include requesting help.                                                       \\
+Irrelevant         & child being actively engaged in an off-task behavior ; examples include starting a different activity, fiddling with objects as a main focus of attention, goofy or silly behaviors. \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
 
 \begin{figure}
     \centering
@@ -518,7 +498,7 @@ front of the camera), large head rotations or quick child motion.
     \label{fig|analysis}
 \end{figure}
 
-
+Several metrics and coding scheme
 
 analysis of behavioural alignment between partners (via
 metrics like the recently proposed \emph{Individual Motor
@@ -528,24 +508,30 @@ Słowinski’s Individual Motor Signature
 (for behavioural alignment), Anderson's~\cite{anderson2004social} coding of children’s free-play
 interactions,
 
-\cite{olswang2006reliability}
 
-\subsection{Dataset availability}
+\subsection{Ethical considerations and dataset availability}
 \label{availability}
 
+All data has been collected by researchers at the Plymouth University, under a
+protocol approved by the university ethics committee. The parents of the
+participants explicitly consented to sharing of their child's video and audio
+with the research community. The data is labelled with a unique participant code
+only and does not contain any identifying information, except the participant's
+images. The child's age and gender are also available.
 
-The dataset is freely available to any interested researcher. Due to ethical
-and data protection regulations, the dataset is however made available in two
-forms: a public, Creative-Commons licensed, version that do not include any
-material enabling the identification of the children (in particular, it does not
-contain any video stream); and a complete version that includes all video
+The dataset is freely available to any interested researcher\footnote{Note to
+the reviewers: the link to the dataset's dedicated website will be added to the
+final version of the article.}. Due to ethical and data protection regulations,
+the dataset is however made available in two forms: a public, Creative-Commons
+licensed, version that do not include any video material of the children (no
+video streams, audio included); and a complete version that includes all video
 streams. This second version is freely available as well, but interested
 researchers must first fill a data protection form.
 
 
-\section{Applications}
-
-\subsection{Specific research questions}
+%\section{Applications}
+%
+%\subsection{Specific research questions}
 %
 %\begin{figure}
 %\centering
@@ -584,39 +570,39 @@ researchers must first fill a data protection form.
 %
 %The mechanisms underlying the social interactions happening during free play
 %raise important questions for social robotics.
-
-
-\subsubsection{Game Dynamics}
-
-\begin{itemize}
-    \item do we observe a sequence of sub-games?
-    \item how are these sub-games initiated?
-    \item how does A keep track of what B is playing at?
-    \item how do we segment the action flow into meaningful play situations?
-\end{itemize}
-
-\subsubsection{Social Dynamics}
-
-\begin{itemize}
-    \item does a ``social protocol'' establish?
-    \item if so, what are these social rules?
-    \item implicit vs explicit rule setting?
-    \item what interaction modalities (or combination thereof) are relied upon
-        to establish and maintain this ``social protocol''?
-\end{itemize}
-
-\subsubsection{Mental representations}
-
-\begin{itemize}
-    \item Does A know what B is thinking of at time t?
-    \item Do the participants perform explicit grounding of their respective mental models
-        (ie, ask the other one what she is doing/thinking/planning to do?)
-    \item How does the implicit grounding take place? attention tracking?
-    \item Do we need at all to know what the other intends to do to actually
-        collaborate? surface alignment vs deep grounding
-    \item Procedural (how do you do it?) vs Semantic
-        grounding (what are you doing? playing at?)
-\end{itemize}
+%
+%
+%\subsubsection{Game Dynamics}
+%
+%\begin{itemize}
+%    \item do we observe a sequence of sub-games?
+%    \item how are these sub-games initiated?
+%    \item how does A keep track of what B is playing at?
+%    \item how do we segment the action flow into meaningful play situations?
+%\end{itemize}
+%
+%\subsubsection{Social Dynamics}
+%
+%\begin{itemize}
+%    \item does a ``social protocol'' establish?
+%    \item if so, what are these social rules?
+%    \item implicit vs explicit rule setting?
+%    \item what interaction modalities (or combination thereof) are relied upon
+%        to establish and maintain this ``social protocol''?
+%\end{itemize}
+%
+%\subsubsection{Mental representations}
+%
+%\begin{itemize}
+%    \item Does A know what B is thinking of at time t?
+%    \item Do the participants perform explicit grounding of their respective mental models
+%        (ie, ask the other one what she is doing/thinking/planning to do?)
+%    \item How does the implicit grounding take place? attention tracking?
+%    \item Do we need at all to know what the other intends to do to actually
+%        collaborate? surface alignment vs deep grounding
+%    \item Procedural (how do you do it?) vs Semantic
+%        grounding (what are you doing? playing at?)
+%\end{itemize}
 
 \subsection{Child-robot baseline}
 
@@ -633,29 +619,71 @@ robot acting in a non-social way) represent an experimental baseline against whi
 future work can be compared.
 
 
-\subsection{Analysis of the free play sandbox}
+%\subsection{Analysis of the free play sandbox}
+%
+%Our free play sandbox elicits a loosely structured play situation. The
+%situation is indeed essentially aimless (free play). The goals and play episodes
+%that we observe during the interactions are not pre-defined, and essentially
+%unknown until they are decided by the players. In this sense, the free play
+%sandbox permits and elicits what is fundamentally \emph{unstructured play}.
+%
+%However, a second look reveals some important structuring elements.
+%
+%First, the physical bounds of the sandbox (an interactive table) limit the
+%play zone to a well defined and relatively small area. As a consequence,
+%children are mostly static (they are sitting in front of the table) and their
+%primary form of interaction is 2D pick and place of items by drag and dropping
+%them on the screen.
+%
+%Second, the game items themselves structure the game scenarios. Items are either
+%iconic characters (animals or children) or plain blocks
+%(Figure~\ref{fig|sandbox}). The former have strong semantics associated to them
+%(like 'crocodiles like water and eat children'), while the later have little
+%semantics associated. The game background, with its recognizable zones, also
+%elicit a particular type of games (like building a zoo or pretending we explore
+%the savannah).
+%
+%Two more elements (the role and place of the experimenter, and the initial
+%prompt given to the participant) have an important impact on the shape of the
+%play situation. We discuss separately these two points in the description of the
+%experimental procedure.
+%
+%Overall, the free play sandbox supports a \emph{loosely structured} form of play: the
+%actual play situations are not known and might change several times during the
+%interaction; the game actions, even though all based on a single modality (picking and
+%placing game items), are unlimited; the social interactions between participants
+%are multi-modal (speech, body postures, gestures, facial expressions, etc.) and
+%unconstrainted. However, the broad domain of the play situations and the range of
+%possible social interactions is bound by the physical bounds of the play zone
+%and the theme of the game items.
+%
+%\subsection{Forms of play elicited by the sandbox}
+%
+%\begin{itemize}
+%    \item dramatic play
+%    \item storytelling
+%    \item creative play
+%    \item pretend play
+%\end{itemize}
+%
 
-Our free play sandbox elicits a loosely structured play situation. The
-situation is indeed essentially aimless (free play). The goals and play episodes
-that we observe during the interactions are not pre-defined, and essentially
-unknown until they are decided by the players. In this sense, the free play
-sandbox permits and elicits what is fundamentally \emph{unstructured play}.
+\section{Conclusion}
+%
+%
+%By analyzing them from the
+%perspective of artifical socio-cognition and human-robot interaction, we
+%evidence key social patterns and show that robots can recognise them,
+%interpret them, and (where applicable) generate them in a task-agnostic
+%fashion. By subsequently reusing these social patterns in similar
+%child-robot free play situations, we show a significant increase of the
+%interaction duration.
 
-However, a second look reveals some important structuring elements.
+We introduce a novel dataset for the study of social cognition. The dataset
+consists in dyadic free-play episodes, with children aged 4 to 8.
 
-First, the physical bounds of the sandbox (an interactive table) limit the
-play zone to a well defined and relatively small area. As a consequence,
-children are mostly static (they are sitting in front of the table) and their
-primary form of interaction is 2D pick and place of items by drag and dropping
-them on the screen.
+The dataset is build with machine learning applications in mind, and
+particularly, applications to socio-cognitive robotics.
 
-Second, the game items themselves structure the game scenarios. Items are either
-iconic characters (animals or children) or plain blocks
-(Figure~\ref{fig|sandbox}). The former have strong semantics associated to them
-(like 'crocodiles like water and eat children'), while the later have little
-semantics associated. The game background, with its recognizable zones, also
-elicit a particular type of games (like building a zoo or pretending we explore
-the savannah).
 
 Finally, the social setting (two players facing each other) implicitely invites
 social interaction: onlooker play, for instance, is unlikely to be observed as
@@ -663,41 +691,6 @@ the children are physically engaged with the game and the other participant
 (they are sitting in front of game, close to each other). The three higher forms
 of social play listed by Parten (parallel play, associative play and cooperative
 play) are however possible with this setup.
-
-
-Two more elements (the role and place of the experimenter, and the initial
-prompt given to the participant) have an important impact on the shape of the
-play situation. We discuss separately these two points in the description of the
-experimental procedure.
-
-Overall, the free play sandbox supports a \emph{loosely structured} form of play: the
-actual play situations are not known and might change several times during the
-interaction; the game actions, even though all based on a single modality (picking and
-placing game items), are unlimited; the social interactions between participants
-are multi-modal (speech, body postures, gestures, facial expressions, etc.) and
-unconstrainted. However, the broad domain of the play situations and the range of
-possible social interactions is bound by the physical bounds of the play zone
-and the theme of the game items.
-
-\subsection{Forms of play elicited by the sandbox}
-
-\begin{itemize}
-    \item dramatic play
-    \item storytelling
-    \item creative play
-    \item pretend play
-\end{itemize}
-
-\section{Conclusion}
-
-
-By analyzing them from the
-perspective of artifical socio-cognition and human-robot interaction, we
-evidence key social patterns and show that robots can recognise them,
-interpret them, and (where applicable) generate them in a task-agnostic
-fashion. By subsequently reusing these social patterns in similar
-child-robot free play situations, we show a significant increase of the
-interaction duration.
 
 
 
