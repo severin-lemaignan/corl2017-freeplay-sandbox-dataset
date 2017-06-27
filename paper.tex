@@ -140,34 +140,47 @@ task-specific, and while they report only limited success, they emphasise the
 %\emph{spatial formation}), followed by the
 
 These examples show the burgeoning interest of our community for the automatic
-learning of social interactions, but also highlight the lack of structure of
-these research efforts, as further illustrated by the lack of large, open
-datasets of social interactions, suitable for machine-learning applications.
+learning of social interactions, but also highlight the lack of structured
+research efforts, as further illustrated by the limited availability of large
+and open datasets of social interactions, suitable for machine-learning
+applications.
 
-One interesting dataset is the \emph{Multimodal Dyadic Behavior
-Dataset} (\emph{MMDB},~\cite{rehg2013decoding}). It comprises of 160 sessions of
-3 to 5 minute child-adult interactions. During these interactions, the
-experimenter plays with toddlers (1.5 to 2.5 years old) in semi-structured ways.
-The dataset includes video streams of the faces and the room, audio, physiological data
-(electrodermal activity) as well as manual annotations of certain behaviours
-(like gaze to the examiner, laughter, pointing). The lack of calibration and camera positioning
-information in the dataset limits the possibilities of automatically extracting and
-labelling key interaction features (like facial expressions or joint gaze). Besides,
-this dataset focuses on very young children with in adult-driven interactions,
-and as such does not include any episodes of naturally-occurring social
-interactions between peers.
+One such dataset is the \emph{Multimodal Dyadic Behavior Dataset}
+(\emph{MMDB},~\cite{rehg2013decoding}). It comprises of 160 sessions of 3 to 5
+minute child-adult interactions. During these interactions, the experimenter
+plays with toddlers (1.5 to 2.5 years old) in semi-structured ways.  The dataset
+includes video streams of the faces and the room, audio, physiological data
+(electrodermal activity) as well as manual annotations of specific behaviours
+(like gaze to the examiner, laughter, pointing). While this dataset is in
+principle relevant, it focuses on very young children during short, adult-driven
+interactions. As such, it does not include episodes of naturally-occurring
+social interactions between peers, and the diversity of said interactions is
+limited. Besides, the lack of intrinsic and extrinsic camera calibration
+information in the dataset prevent the automatic extraction and labelling of key
+interaction features (like mutual gaze).
 
-\todo[inline]{look at other child-child datasets!}
-\todo[inline]{mention research on deep-learning to diagnose autism}
+Another recent dataset, the \emph{Tower Game Dataset}~\cite{salter2015tower},
+focuses specifically on rich dyadic social interactions. The dataset comprises
+of 39 adults recorded over a total of 112 annotated sessions of 3 min in
+average. The participant are instructed to build together a tower with wooden
+blocks. Interestingly, the participants are not allowed to talk in order to
+maximise the amount of non-verbal communication. The skeletons and faces of the
+participants are recorded, and the dataset is manually annotated with so-called
+\emph{Essential Social Interaction Predicates} (ESIPs): rhythmic coupling
+(entrainment or attunement), mimicry (behavioral matching), movement
+simultaneity, kinematic turn taking patterns, joint attention. The dataset does
+not appear to be publicly available on-line.
+
+The PInSoRo dataset shares the aims of the \emph{Tower Game Dataset}, with
+however a stronger focus on natural, real-world behaviours: as presented in the
+following sections, we record much longer interactions (up to 40 minutes) of
+free-play interaction, fostering a wider range of socio-cognitive behaviours.
 
 \section{The Plymouth Interacting Social Robots Dataset (PInSoRo)}
 
-\todo[inline]{the dataset is not specific to robotics...PinSoRo is maybe not the
-    best name?}
-
 The Plymouth Interacting Social Robots (PInSoRo) Dataset comprises of natural
 social interactions arising between children, and recorded with machine learning
-applications in mind.
+and social robotics applications in mind.
 
 As detailed in section~\ref{availability}, this dataset is open and made freely
 available to any interested researcher. It is intended to be used to train
