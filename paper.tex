@@ -308,15 +308,7 @@ others      & \multicolumn{2}{l}{annotations of social behaviours and remarkable
 
 As the data is recorded using ROS's bag files, it can be replayed in the exact
 same conditions as it was during the recording. All the video streams use
-calibrated cameras. Only the raw RGB and depth video streams are recorded. While
-the raw RGB and depth streams are neither rectified nor registered together (due
-to performance considerations during the recording), it can be easily achieved
-as a post-process step, using standard ROS tools (the ROS {\tt rgbd\_pipeline}).
-Pre-configured scripts are available alongside the dataset\footnote{Available
-online from
-\url{https://github.com/severin-lemaignan/freeplay-sandbox-analysis}.} to
-republish registered streams and the corresponding 3D point-clouds (as seen in
-Fig.~\ref{fig|rviz}, left).
+calibrated cameras. Only the raw RGB and depth video streams are recorded. 
 
 \subsection{Hardware and Software}
 
@@ -389,25 +381,21 @@ with the research community. The data is labelled with a unique participant code
 only and does not contain any identifying information, except the participant's
 images. The child's age and gender are also available.
 
-\subsubsection{Conditions}\label{conditions}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{setup_child_child_top}
+    %\hspace{1.5cm}
+    %\includegraphics[width=0.4\linewidth]{setup_child_robot_top}
+    %\caption{Experimental setup, child-child condition (left) and child-robot condition (right).}
+    \caption{Experimental setup}
+    \label{fig|setup}
+\end{figure}
 
-\begin{itemize}
-\item
-  Condition A: one pair of children play freely  simultaneously on the
-  sandtray.
-\item
-  Condition B: one child plays on the sandtray with the robot. The robot does
-  not exhibit any social behaviour.
-\end{itemize}
+The experimenter stays in the room, visible to the child. When
+requested by the nursery or school, another childminder (nursery/school
+staff) can be present in the room. She/he is however asked not to step
+in during the experiment.
 
-\subsubsection{Demographics}\label{demographics}
-
-\begin{itemize}
-\item
-  Condition A: 40 pairs of children (i.e., 80 children)
-\item
-  Condition B: 40 children
-\end{itemize}
 
 2 age groups, balanced across conditions: 4 y.o. (nursery) and 6 to 7
 y.o. (Y1/Y2)
@@ -422,33 +410,12 @@ On large touchscreen, mounted on a horizontal frame (\emph{sandtray});
 both children (Condition A, Figure 5 left) or the child and the robot
 (Condition B, Figure 5 right) are facing each other.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\linewidth]{setup_child_child_top}
-    \hspace{1.5cm}
-    \includegraphics[width=0.4\linewidth]{setup_child_robot_top}
-    \caption{Experimental setup, child-child condition (left) and child-robot
-    condition (right).}
-    \label{fig|setup}
-\end{figure}
-
-The experimenter stays in the room, visible to the child. When
-requested by the nursery or school, another childminder (nursery/school
-staff) can be present in the room. She/he is however asked not to step
-in during the experiment.
-
-The interaction is recorded by 3 cameras: one `environment' camera
-filming the whole scene and two RGB-D cameras, one focused on each of the
-children's faces. Audio is recorded using the microphones integrated to the RGB-D cameras. 
-
-One computer (integrated with the touchscreen) manages the game and the
-synchronous recording of the cameras and microphones.
 
 \subsubsection{Acquisition Procedure}
 
 
+
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
 \item
   Welcome (5 min):
 
@@ -516,6 +483,27 @@ synchronous recording of the cameras and microphones.
 \todo[inline]{mention robot calibration phase (between 0 and }
 
 Total duration: between 20-50 min.
+
+\subsection{Data post-processing}
+
+While
+the raw RGB and depth streams are neither rectified nor registered together (due
+to performance considerations during the recording), it can be easily achieved
+as a post-process step, using standard ROS tools (the ROS {\tt rgbd\_pipeline}).
+Pre-configured scripts are available alongside the dataset\footnote{Available
+online from
+\url{https://github.com/severin-lemaignan/freeplay-sandbox-analysis}.} to
+republish registered streams and the corresponding 3D point-clouds (as seen in
+Fig.~\ref{fig|rviz}, left).
+
+Using the {\tt gazr} face tracking library\footnote{Available online from
+\url{https://github.com/severin-lemaignan/gazr}. {\tt gazr} relies on the {\tt
+dlib} face tracker for facial features
+extraction.}~\cite{lemaignan2016realtime}, children faces and facial features can
+are extracted and reprojected onto the 3D point-clouds (Fig.~\ref{fig|rviz},
+right). Faces have been successfully detected in 57\% of the recorded frames
+in the dataset. Undetected faces are due to occlusions (the child put her arm in
+front of the camera), large head rotations or quick child motion.
 
 \subsection{Annotations of Social Behaviours}
 
