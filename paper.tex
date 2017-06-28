@@ -50,18 +50,18 @@
 %learning.
 
 Child-robot interactions are increasingly being explored in domains which
-require longer-term applications, such as healthcare and education. In order
+require longer-term interactions, such as healthcare and education. In order
 for a robot to behave in an appropriate manner over longer time scales, its
-behaviours should be aligned and meaningful to the interacting children.
-Generating such sustained and engaging social behaviours is an on-going research
+behaviours should be contingent and meaningful to the unfolding interaction.
+Generating sustained and engaging social behaviours is an on-going research
 challenge, and we argue here that the recent progress of deep machine learning
 opens new perspectives that the Human-Robot Interaction (HRI) community
 should embrace.
 
 As an initial step in that direction, we introduce a novel,
-open dataset of children social interactions, designed with
+open dataset of child social interactions, designed with
 machine learning applications in mind. Our data acquisition methodology relies on
-a engaging and purposefully underspecified \emph{free play} interaction. By doing
+an engaging and purposefully underspecified \emph{free play} interaction. By doing
 so, we capture a rich set of behavioural patterns occurring in natural
 social interactions between children. Learning to recognise, and possibly generate, such
 behaviours is one of the future research directions that we foresee this dataset to effectively support.
@@ -71,16 +71,16 @@ behaviours is one of the future research directions that we foresee this dataset
 
 \section{Machine Learning: the Next Horizon for Social Robots?}
 
-The family of recurrent neural networks (RNNs) have repeatedly made the
-headlines over the last few years with impressive results---notably in image
+The broad family of deep neural networks have repeatedly made the
+headlines in the last few years with reports of impressive results---notably in image
 classification, image labelling and automatic translation. They have been
 however largely ignored by other fields as they are perceived to require
 impossibly large datasets (hundreds of thousands to millions of observations) to
 actually build up useful capabilities.  Even though neural networks have
-demonstrated compelling results in open-ended, under-specified tasks like image
+demonstrated compelling results in non-trivial tasks like image
 labelling, they did not stand out as attractive approaches to problems involving
-high dimensions with relatively small datasets available -- like human-robot
-social interactions.  Besides, if one considers ``social interactions'' to also
+high input and output dimensions where only relatively small datasets are available -- like human-robot
+interactions.  Furthermore, if one considers ``social interactions'' to also
 entail joint behavioural dynamics, and therefore, some sort of temporal
 modeling, neural networks look even less enticing as time is notably absent from
 most of the tasks which neural networks have been successful at.
@@ -93,21 +93,22 @@ that a relatively small sample size (about 500 games) is sufficient for an
 artificial agent to not only learn how to play (which requires an implicit model 
 of time to adequately move the Break-Out paddle), but to also create gaming 
 strategies that look like they would necessitate planning (the system first
-breaks bricks on one side to eventually get the ball to break-out and reach out the area
+breaks bricks on one side to eventually get the ball to break through and reach the area
 above the remaining bricks, therefore ensuring rapid progress in the
 game).
 
 More recently, Ogata's team~\cite{yang2017repeatable} has demonstrated how an
 adequately configured RNN is able to learn a complex robotic task (folding soft
 objects like towels using a dual-arm mobile manipulator) from only \emph{35}
-demonstrations of $\approx$ 70 seconds-long teleoperated
+demonstrations of $\approx$ 70 second-long teleoperated
 sequences. The network inputs are the raw video stream from the head camera and the
 12 degrees of freedom of the two arms. Successfully folding towels entails an explicit sequencing of
 actions (therefore implicit temporal modeling). The fact that such a complex
 process can be successfully learned from a small training dataset should lead
 us to reconsider the range of domains to which RNNs would be applicable.
 
-Indeed, as we have previously argued~\cite{lemaignan2016towards}, we believe
+%Indeed, as we have previously argued~\cite{lemaignan2016towards}, 
+We believe
 that the complexity of mechanisms that such neural networks have been able to
 uncover and model should invite our community to explore its applicability to
 human-robot interactions (HRI) in general, and sustained, natural child-robot
@@ -123,8 +124,7 @@ The use of interaction datasets to teach robots how to socially behave has been
 previously explored, and can be considered as the extension of the traditional
 learning from demonstration (LfD) paradigms to social interactions
 (i.e.,~\cite{nehaniv2007imitation,mohammad2015interaction}). However, existing
-research focuses on low-level identification or generation of short,
-self-standing behaviours, including social gestures~\cite{nagai2005learning} and
+research focuses on low-level identification or generation of brief, autonomous behaviours, including social gestures~\cite{nagai2005learning} and
 gazing behaviours~\cite{calinon2006teaching}.
 
 Based on a human-human interaction dataset, Liu \etal~\cite{liu2014how} have
@@ -140,7 +140,7 @@ task-specific, and while they report only limited success, they emphasise the
 %\emph{spatial formation}), followed by the
 
 These examples show the burgeoning interest of our community for the automatic
-learning of social interactions, but also highlight the lack of structured
+learning of social responses, but also highlight the lack of structured
 research efforts, as further illustrated by the limited availability of large
 and open datasets of social interactions, suitable for machine-learning
 applications.
@@ -148,7 +148,7 @@ applications.
 One such dataset is the \emph{Multimodal Dyadic Behavior Dataset}
 (\emph{MMDB},~\cite{rehg2013decoding}). It comprises of 160 sessions of 3 to 5
 minute child-adult interactions. During these interactions, the experimenter
-plays with toddlers (1.5 to 2.5 years old) in semi-structured ways.  The dataset
+plays with toddlers (1.5 to 2.5 years old) in a semi-structured manner.  The dataset
 includes video streams of the faces and the room, audio, physiological data
 (electrodermal activity) as well as manual annotations of specific behaviours
 (like gaze to the examiner, laughter, pointing). While this dataset is in
@@ -162,7 +162,7 @@ interaction features (like mutual gaze).
 Another recent dataset, the \emph{Tower Game Dataset}~\cite{salter2015tower},
 focuses specifically on rich dyadic social interactions. The dataset comprises
 of 39 adults recorded over a total of 112 annotated sessions of 3 min in
-average. The participants are instructed to build a tower together with wooden
+average. The participants are instructed to jointly construct a tower using wooden
 blocks. Interestingly, the participants are not allowed to talk to
 maximise the amount of non-verbal communication. The skeletons and faces of the
 participants are recorded, and the dataset is manually annotated with so-called
@@ -174,11 +174,11 @@ not appear to be publicly available on-line.
 The PInSoRo dataset shares the aims of the \emph{Tower Game Dataset}, with
 however a stronger focus on natural, real-world behaviours: as presented in the
 following sections, we record much longer interactions (up to 40 minutes) of
-free-play interaction, fostering a wider range of socio-cognitive behaviours.
+free-play interaction, capturing a wider range of socio-cognitive behaviours.
 
-\section{The Plymouth Interacting Social Robots Dataset (PInSoRo)}
+\section{The P[XXXXX] Interacting Social Robots Dataset (PInSoRo)}
 
-The PInSoRo Dataset comprises of natural
+The PInSoRo Dataset is comprised of natural
 social interactions arising between children, recorded with machine learning
 and social robotics applications in mind. 
 As detailed in section~\ref{availability}, this dataset is open and made freely
@@ -197,14 +197,14 @@ wild during social interactions.
     \caption{The free-play social interactions sandbox: two children interact in
     a free-play situation, by drawing and manipulating items on a touchscreen.
     Children are facing each other and sit on cushions. Each child wears a
-    bright sport bib, either purple or yellow, to facilitate later
+    bright sports bib, either purple or yellow, to facilitate later
     identification.}
 
     \label{fig|freeplay}
 \end{figure}
 
-The acquisition of such a dataset requires first the definition of a suitable
-task for the participants to perform while they are recorded. The nature of
+The acquisition of such a dataset requires a suitable
+task for the participants to perform while they are being recorded. The nature of
 this task influences in fundamental ways the kind of interactions that might be
 observed, and later, learned. Because they typically target specific social
 or cognitive skills in a tightly controlled manner, traditional socio-cognitive tasks are
@@ -216,8 +216,8 @@ of naturally-occurring social interactions, and participants should engage in a 
 \begin{itemize}
     \item is not directed, to maximise natural, non-contrived behaviours;
     \item elicit a large range of interaction situations;
-    \item foster rich multi-modal interaction: simultaneous speech, gesture, and gaze
-        behaviours are to be observed;
+    \item foster rich multi-modal interaction, such as simultaneous speech, gesture, and gaze
+        behaviours;
     \item evidence social dynamics, such as coupling, joint attention, turn-taking.
 \end{itemize}
 
@@ -225,7 +225,7 @@ We have designed a new experimental task, called the \emph{freeplay sandbox}, th
 free play interactions. Pairs of children (4-8 years old) are invited to freely draw and interact with items
 displayed on an interactive table, without any explicit goal set by the experimenter (Fig.~\ref{fig|freeplay}).
 The task is designed so that children can engage in open-ended and non-directive play, yet it is
-sufficiently defined to be suitable for recording, and reproducible in comparable conditions.
+sufficiently constrained to be suitable for recording, and allows the reproduction of social behaviour by an artificial agent in comparable conditions.
 
 \begin{figure}[ht!]
     \centering
@@ -249,12 +249,12 @@ grass, beach, bushes...). By drawing on top of the background picture, the
 children can change the environment to their liking. The players do not have any particular task to
 complete, they are simply invited to freely play for as long as they want.
 
-In order to constraint the dataset to a tractable domain, the task is limited to
+In order to constrain the dataset to a tractable domain, the task is limited to
 a dyadic face-to-face interaction.  The resulting interaction space is
-nevertheless high-dimensional, with two main axes: the game-related actions
+nevertheless high-dimensional, with two main foci: the game-related actions
 (drawing, manipulating items, telling stories) and the social interactions
 (monitoring the other's actions, discussing and agreeing on joint actions,
-helping/hostile behaviours, etc.).
+supportive/antagonistic behaviours, etc.).
 
 %
 %\paragraph{Socio-cognitive framing of the task}
@@ -286,7 +286,7 @@ play interaction between two children. To date (June 2017) 25 records have been
 acquired (\ie 50 children), totalling 08h41m of recording. At the end of the acquisition campaign
 (July 2017), the dataset is planned to include 50 records. As
 the children decide themselves when to stop, the duration of each play episode varies ($M=20m51s,
-SD=10m40s$). It is however capped to a maximum of 40 minutes.
+SD=10m40s$). It is however capped at a maximum of 40 minutes.
 
 Data is collected using the ROS middleware\footnote{\url{http://ros.org}} and
 recorded as \emph{bag} files. Table~\ref{table|datastreams} lists all the
@@ -326,12 +326,12 @@ other       & \multicolumn{2}{l}{static transforms between touchscreen and facia
 \paragraph{Hardware}
 The sandtray is made of a 27" Samsung All-In-One computer running Ubuntu Linux
 and equipped with a fast 1TB SSD hard-drive. The computer is held horizontally in
-a custom aluminium frame standing 26cm above the ground
+a custom aluminium frame standing 26cm above the floor
 (visible in Fig.~\ref{fig|freeplay}). All the cameras are plugged directly over
 USB-3 to the computer. The computer performs all the data acquisition using ROS
 Kinetic.
 
-The children faces are recorded from two short range Intel RealSense SR300
+The children's faces are recorded using two short range Intel RealSense SR300
 RGB-D cameras (0.2m to 1.2m) placed at the corners of the the sandtray
 (Figs.~\ref{fig|rviz} and~\ref{fig|setup}) and tilted to face the children. The
 cameras are rigidly mounted on custom 3D-printed brackets. This enables a
@@ -355,7 +355,7 @@ coders while annotating the interaction, and is not precisely calibrated.
 \end{figure}
 
 \paragraph{Software}
-The sandbox is implemented with two frameworks: the Qt's QtQuick framework
+The sandbox is implemented using two software frameworks: the Qt's QtQuick framework
 for the graphical interface of the game, and the \emph{Robot Operating System}
 (ROS) for the modular implementation of the data processing and data acquisition
 pipelines. A dedicated bridge between QtQuick and ROS has been specifically
@@ -378,7 +378,7 @@ participants. The supervisor is available online as well:
 
 \subsection{Dataset Acquisition}
 
-The experimental setup is visible in Fig.~\ref{fig|freeplay}, left.  The
+The experimental setup is shown in Fig.~\ref{fig|freeplay}, left.  The
 experimenter stays in the room, visible to the child, during the whole
 experiment. When requested by the nursery or school, another childminder
 (nursery/school staff) can be present in the room. She/he is however asked not
@@ -389,7 +389,7 @@ card whenever they run out of activity ideas.
 
 \paragraph{Demographics}
 
-We recruited normally developing children, from local primary schools and
+We recruited typically developing children, from local primary schools and
 nurseries. The children are aged 4 to 8 ($M=5.8$). So far, 50 children (23
 female, 27 males) were recorded in pairs. Pairs were formed by the school or
 nursery staff, and all the pairs knew each other beforehand.
@@ -397,8 +397,8 @@ nursery staff, and all the pairs knew each other beforehand.
 \paragraph{Acquisition Procedure}
 
 The following acquisition procedure has been followed with all participants. To
-ease later identification, each child was given a colourful (purple or yellow)
-sport bib to wear.
+ease later identification, each child was given a brightly coloured (purple or yellow)
+sports bib to wear.
 
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
     \begin{tabular}{@{}p{0.2\linewidth}p{0.8\linewidth}@{}}
@@ -411,7 +411,7 @@ sport bib to wear.
                                     for the remaining of the experiment \\
                                     %Condition B: "Hello, I'm Nao. Today I'll be playing with you. Exciting!")\\ 
                                   & \tabitem place children on cushions \\ 
-                                  & \tabitem give them the yellow/purple sport
+                                  & \tabitem give them the yellow/purple sports
                                   bibs and make sure their hair is tied \\ 
                                   & \tabitem complete demographics on the tablet \\
                                   & \tabitem remind the children that they can withdraw at anytime \\ \midrule
@@ -534,7 +534,7 @@ the reviewers: for the purpose of the review, an excerpt of the dataset is
 available online: \url{https://freeplay-sandbox.github.io/}. A link to the
 complete dataset will be made available in the final version of the article.}.
 Due to ethical and data protection regulations, the dataset is however made
-available in two forms: a public, Creative-Commons licensed, version that do
+available in two forms: a public, Creative Commons licensed, version that does
 not include any video material of the children (no video streams, audio
 included); and a complete version that includes all video streams. This second
 version is freely available as well, but interested researchers must first fill
