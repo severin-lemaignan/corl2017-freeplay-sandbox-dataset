@@ -234,10 +234,13 @@ sufficiently defined to be suitable for recording, and reproducible in comparabl
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.8\linewidth]{sandbox}
+    \includegraphics[width=0.52\linewidth]{sandbox}
+    \hspace{0.2em}
+    \includegraphics[width=0.46\linewidth]{rviz-sandtray}
     \caption{Example of a possible game situation. Items (animals,
     characters...) can be dragged over the whole play area, while the background
-    picture can be painted over by picking a colour.}
+    picture can be painted over by picking a colour. The right picture shows a
+    real-time visualisation of the experiment using ROS RViz.}
 
     \label{fig|sandbox}
 \end{figure}
@@ -349,15 +352,9 @@ coders while annotating the interaction, and is not precisely calibrated.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\linewidth]{rviz-sandtray}
-    \hspace{0.2em}
-    \includegraphics[width=0.48\linewidth]{3d-point-cloud-facial-features}
-    \caption{The freeplay sandbox, visualised at runtime with ROS RViz. The
-    poses of the interactive items are published (visible in the central panel,
-    right picture), as well as an estimate of the children's head pose.  The
-    left picture shows a reconstructed 3D point cloud of one child face, along
-    %CERE: left? central? this caption confused me a bit... 
-    with the detected 68 facial features.}
+    \includegraphics[width=0.9\linewidth]{3d-point-cloud-facial-features}
+    \caption{The reconstructed 3D point cloud of one child face with the
+    detected 68 facial features, visualised in RViz.}
 
     \label{fig|rviz}
 \end{figure}
@@ -373,7 +370,7 @@ and the children's touches. The game interface is open-source and available onli
 \url{https://github.com/severin-lemaignan/freeplay-sandbox-qt}.
 
 By relying on ROS for the data acquisition, real-time monitoring of the
-interaction is also possible (Fig.~\ref{fig|rviz}).
+interaction is also possible (Fig.~\ref{fig|sandbox}, right).
 The ROS data acquisition pipeline is open-source as well, and available from
 \url{https://github.com/severin-lemaignan/freeplay-sandbox-ros}.
 
@@ -450,14 +447,13 @@ Pre-configured scripts are available alongside the dataset\footnote{Available
 online from
 \url{https://github.com/severin-lemaignan/freeplay-sandbox-analysis}.} to
 republish registered streams and the corresponding 3D point-clouds (as seen in
-Fig.~\ref{fig|rviz}, left).
+Fig.~\ref{fig|rviz}).
 
 Using the {\tt gazr} face tracking library\footnote{Available online from
 \url{https://github.com/severin-lemaignan/gazr}. {\tt gazr} relies on the {\tt
 dlib} face tracker for facial features
 extraction.}~\cite{lemaignan2016realtime}, children faces and facial features can
-are extracted and reprojected onto the 3D point-clouds (Fig.~\ref{fig|rviz},
-right). Faces have been successfully detected in 56\% of the recorded frames
+are extracted and reprojected onto the 3D point-clouds (Fig.~\ref{fig|rviz}). Faces have been successfully detected in 56\% of the recorded frames
 in the dataset. Undetected faces are due to occlusions (a child put her arm in
 front of the camera), large head rotations or quick child motion.
 
@@ -474,8 +470,6 @@ We use the \emph{Social Communication Coding System} proposed by
 Olswang~\etal\cite{olswang2006reliability}. It consists in 6 constructs
 characterising social communication (Table~\ref{table|sccs}).
 
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
 \begin{table}[]
 \centering
 \caption{Constructs of the Social Communication Coding System (SCCS), taken from~\cite{olswang2006reliability}}

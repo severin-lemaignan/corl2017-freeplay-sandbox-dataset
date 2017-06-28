@@ -2385,10 +2385,10 @@
      inkscape:window-width="1920"
      borderlayer="true"
      showgrid="false"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      inkscape:document-units="cm"
      inkscape:cy="505.10957"
-     inkscape:cx="896.66636"
+     inkscape:cx="558.26526"
      inkscape:zoom="0.49497475"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -2416,12 +2416,12 @@
     <image
        sodipodi:absref="/home/slemaignan/publications/corl2017-freeplay-sandbox-dataset/figs/freeplay-sandbox.png"
        xlink:href="freeplay-sandbox.png"
-       y="-13.131987"
-       x="-3.9739239"
-       id="image4999"
-       preserveAspectRatio="none"
+       width="2134.5251"
        height="1200.6704"
-       width="2134.5251" />
+       preserveAspectRatio="none"
+       id="image4999"
+       x="-3.9739239"
+       y="-13.131987" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -2982,7 +2982,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       transform="matrix(-0.41153542,-0.53664897,0.53664897,-0.41153542,1925.1958,1506.9021)"
+       transform="matrix(-0.41153542,-0.53664897,0.53664897,-0.41153542,1892.8709,1533.1661)"
        id="g4825"
        style="display:inline">
       <path
