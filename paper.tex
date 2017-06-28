@@ -23,7 +23,7 @@
 
 \graphicspath{{figs/}}
 
-\title{PInSoRo: A Dataset for Deep-learning of Human-Robot Social Interactions}
+\title{PInSoRo: A Dataset for Deep-Learning of Human-Robot Social Interactions}
 
 
 \author{Séverin Lemaignan, Charlotte Edmunds, Tony Belpaeme}
@@ -349,7 +349,7 @@ coders while annotating the interaction, and is not precisely calibrated.
     \centering
     \includegraphics[width=0.9\linewidth]{3d-point-cloud-facial-features}
     \caption{The reconstructed 3D point cloud of one child face with the
-    detected 68 facial features, visualised in RViz.}
+    68 detected facial features, visualised in RViz.}
 
     \label{fig|rviz}
 \end{figure}
@@ -378,18 +378,21 @@ participants. The supervisor is available online as well:
 
 \subsection{Dataset Acquisition}
 
-The experimental setup is visible in Fig.~\ref{fig|freeplay}, left.  The experimenter
-stays in the room, visible to the child, during the whole experiment. When
-requested by the nursery or school, another childminder (nursery/school staff)
-can be present in the room. She/he is however asked not to step in during the
-experiment.
+The experimental setup is visible in Fig.~\ref{fig|freeplay}, left.  The
+experimenter stays in the room, visible to the child, during the whole
+experiment. When requested by the nursery or school, another childminder
+(nursery/school staff) can be present in the room. She/he is however asked not
+to step in during the experiment. Not pictured on Fig.~\ref{fig|freeplay} is an
+'ideas box', containing 5 cards depicting simple environments (zoo, forest,
+city, space, pirates).  Children are invited by the experimenter to pick up a
+card whenever they run out of activity ideas.
 
 \paragraph{Demographics}
 
 We recruited normally developing children, from local primary schools and
 nurseries. The children are aged 4 to 8 ($M=5.8$). So far, 50 children (23
 female, 27 males) were recorded in pairs. Pairs were formed by the school or
-nursery staff, and all the pairs knew each other before hand.
+nursery staff, and all the pairs knew each other beforehand.
 
 \paragraph{Acquisition Procedure}
 
@@ -412,14 +415,13 @@ sport bib to wear.
                                   bibs and make sure their hair is tied \\ 
                                   & \tabitem complete demographics on the tablet \\
                                   & \tabitem remind the children that they can withdraw at anytime \\ \midrule
-        \bf Visual focus task             &  \emph{}\\ 
-\emph{(30 sec)}                   &  \\ \midrule
+\bf Visual focus task             & \emph{(unrelated visual task where children gaze at a moving target)}\\ 
+\emph{(30 sec)}                   & \\ \midrule
 \bf Tutorial                      & explain how to interact with the game, ensure the children are confident with the manipulation/drawing \\ 
-\emph{(1-2 min)}                  &  \\ \midrule
-\bf Item placement game           &  \\
+\emph{(1-2 min)}                  & \\ \midrule
+\bf Items placement game          & \emph{(unrelated task on spatial reasoning -- as this task uses the same graphical environment as the main free-play task, it helps the children to familiarise themselves with the game environment)} \\
 \emph{(5 to 10 min)}              &  \\ \midrule
-\bf Freeplay task                 & \tabitem start the recording \\
-\emph{(up to 40 min)}             & \tabitem initial prompt: \emph{"Just to remind you, you can use the animals or draw. Whatever you
+\bf Freeplay task                 & \tabitem initial prompt: \emph{"Just to remind you, you can use the animals or draw. Whatever you
                                   like. If you run out of ideas, there's also an ideas box. For example, the first one is a
                                   zoo. You could draw a zoo or tell a story. When you get bored or don't want to play
                                   anymore, just let me know."} \\
@@ -429,17 +431,19 @@ sport bib to wear.
 \emph{(about 2 min)}              & \tabitem give stickers as a thank you \\ \bottomrule
 \end{tabular}
 
+No rewards were given to the children beyond a sticker and, at the end of the
+acquisition campaign, a demonstration of robots with the whole class.
 
 \subsection{Data post-processing}
 \label{postprocessing}
 
-The dataset contains the raw datastreams, as recorded during the study. No post-processing has been applied.
+The dataset contains the raw datastreams, as recorded during the study.
 % in the robot condition, the interaction bag is trimmed to start once the robot is localised
-While the raw RGB and depth video streams are neither rectified nor registered together (due
-to performance considerations during the recording), it can be easily achieved
-as a post-process step, using standard ROS tools (the ROS {\tt rgbd\_pipeline}).
-Pre-configured scripts are available alongside the dataset\footnote{Available
-online from
+While the raw RGB and depth video streams are neither rectified nor registered
+together (due to performance considerations during the recording), it can be
+easily achieved using standard ROS tools (the ROS {\tt
+rgbd\_pipeline}). Pre-configured scripts are available alongside the
+dataset\footnote{Available online from
 \url{https://github.com/severin-lemaignan/freeplay-sandbox-analysis}.} to
 republish registered streams and the corresponding 3D point-clouds (as seen in
 Fig.~\ref{fig|rviz}).
@@ -447,23 +451,33 @@ Fig.~\ref{fig|rviz}).
 Using the {\tt gazr} face tracking library\footnote{Available online from
 \url{https://github.com/severin-lemaignan/gazr}. {\tt gazr} relies on the {\tt
 dlib} face tracker for facial features
-extraction.}~\cite{lemaignan2016realtime}, children faces and facial features can
-are extracted and reprojected onto the 3D point-clouds (Fig.~\ref{fig|rviz}). Faces have been successfully detected in 56\% of the recorded frames
-in the dataset. Undetected faces are due to occlusions (a child put her arm in
-front of the camera), large head rotations or quick child motion.
+extraction.}~\cite{lemaignan2016realtime}, children faces and facial features
+can be extracted and reprojected onto the 3D point-clouds
+(Fig.~\ref{fig|rviz}). Faces have been successfully detected in 56\% of the
+recorded frames in the dataset -- undetected faces are due to occlusions (a child
+put her arm in front of the camera), large head rotations or quick child
+motion -- and whenever a face is present, the corresponding 3D facial features
+have been added to the dataset.
 
 \subsection{Annotations of Social Behaviours}
 
-The last part of the dataset consist in annotations of the
-children's social behaviours. Some of these behaviours are automatically
-computed and coded (mutual gaze, for instance), some are human-coded.
-The annotations are integrated in the dataset as a timestamped datastream.
+The last part of the dataset consist in annotations of the children's social
+behaviours. These behaviours are either automatically computed and coded
+(mutual gaze, for instance), or are human-coded. The annotations are all
+timestamped and integrated as an independent datastream in the dataset.
 
 \paragraph{Human-coded social behaviours}
 
-We use the \emph{Social Communication Coding System} proposed by
-Olswang~\etal\cite{olswang2006reliability}. It consists in 6 constructs
-characterising social communication (Table~\ref{table|sccs}).
+The dataset includes two types of manual annotations: \emph{remarkable events},
+annotated by the experimenter during the experiment as free text annotation, and
+\emph{social behaviours} coded with the \emph{Social Communication Coding
+System} (SCCS) proposed by Olswang~\etal\cite{olswang2006reliability}.
+These annotations are performed post-hoc, with a dedicated tool, able to replay synchronously
+the main datastreams (Fig.~\ref{fig|analysis}).
+
+The SCCS consists in 6 mutually exclusive constructs characterising social
+communication (Table~\ref{table|sccs}). These behaviours represent a typical
+classification output that a network could be trained to recognise.
 
 \begin{table}[]
 \centering
@@ -475,7 +489,7 @@ characterising social communication (Table~\ref{table|sccs}).
 \bf Construct          & \bf Description                                                                                                                                                                                                                                                                                                                                           \\ \midrule
 Hostile/coercive   & anti-social behavior; examples include grabbing, hitting, taunting, provoking, yelling.                                                       \\
 Prosocial/engaged  & engaged in a positive social interaction; examples include on-task work or conversations, helping, sharing, and compromising.                 \\
-Assertive          & child stating a position or opinion; examples include asserting beliefs (verbally or nonverbally), directing the partner.                     \\
+Assertive          & child stating a position or opinion; examples include asserting beliefs (verbally or non-verbally), directing the partner.                     \\
 Passive/disengaged & lack of involvement in the activity, physical disengagement; examples include staring into space, putting head down, speaking quite softly, and walking away from an activity.\\
 Adult seeking      & effort to seek assistance or attention from an adult; examples include requesting help.                                                       \\
 Irrelevant         & child being actively engaged in an off-task behavior; examples include starting a different activity, fiddling with objects as a main focus of attention, goofy or silly behaviors. \\ \bottomrule
@@ -483,25 +497,26 @@ Irrelevant         & child being actively engaged in an off-task behavior; examp
 \end{table}
 
 
-\begin{figure}
+
+\begin{figure}[b!]
     \centering
     \includegraphics[width=0.8\linewidth]{analysis}
-    \caption{Screenshot of the interaction analysis tool: key record information
-    are played back in a synchronised (faces and audio of the two children,
-    interaction occuring on the interactive table, etc.) while the human coder
+    \caption{Screenshot of our interaction annotation tool: the recorded interaction data
+    is played back synchronously (faces and audio of the two children,
+    interaction occurring on the interactive table, etc.) while the human coder
     annotate the record timeline with social situations of interest.}
     \label{fig|analysis}
 \end{figure}
 
-Several metrics and coding scheme
-
-analysis of behavioural alignment between partners (via
-metrics like the recently proposed \emph{Individual Motor
-Signature}~\cite{slowinski2016dynamic})
-
-Słowinski’s Individual Motor Signature
-(for behavioural alignment), Anderson's~\cite{anderson2004social} coding of children’s free-play
-interactions,
+%Several metrics and coding scheme
+%
+%analysis of behavioural alignment between partners (via
+%metrics like the recently proposed \emph{Individual Motor
+%Signature}~\cite{slowinski2016dynamic})
+%
+%Słowinski’s Individual Motor Signature
+%(for behavioural alignment), Anderson's~\cite{anderson2004social} coding of children’s free-play
+%interactions,
 
 
 \subsection{Ethical considerations and dataset availability}
