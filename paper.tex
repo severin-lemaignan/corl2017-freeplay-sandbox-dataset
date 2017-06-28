@@ -71,23 +71,19 @@ behaviours is one of the future research directions that we foresee this dataset
 
 \section{Machine Learning: the Next Horizon for Social Robots?}
 
-While the family of recurrent neural networks (RNNs) have repeatedly made the
+The family of recurrent neural networks (RNNs) have repeatedly made the
 headlines over the last few years with impressive results---notably in image
-classification, image labelling and automatic translation---they have been so far 
-%CERE: do these need references?
-largely ignored by  many other fields as they are perceived to require very
-large datasets (hundreds of thousands to millions of observations) to actually
-build up useful capabilities. 
-%CERE: perhaps this sentence could be shorter?
-Even though neural networks have demonstrated
-compelling results in open-ended, under-specified tasks like image labelling, they
-did not stand out as attractive approaches to problems involving high dimensions
-with relatively small datasets available -- like human-robot social
-interactions.
-Besides, if one considers ``social interactions'' to also entail joint
-behavioural dynamics, and therefore, some sort of temporal modeling, neural
-networks look even less enticing as time is notably absent from most of the
-tasks which neural networks have been successful at.
+classification, image labelling and automatic translation. They have been
+however largely ignored by other fields as they are perceived to require
+impossibly large datasets (hundreds of thousands to millions of observations) to
+actually build up useful capabilities.  Even though neural networks have
+demonstrated compelling results in open-ended, under-specified tasks like image
+labelling, they did not stand out as attractive approaches to problems involving
+high dimensions with relatively small datasets available -- like human-robot
+social interactions.  Besides, if one considers ``social interactions'' to also
+entail joint behavioural dynamics, and therefore, some sort of temporal
+modeling, neural networks look even less enticing as time is notably absent from
+most of the tasks which neural networks have been successful at.
 
 That being said, in 2015, the Google DeepMind team demonstrated how a convolutional
 recurrent neural network could learn to play the game Break-Out (amongst
@@ -106,8 +102,7 @@ adequately configured RNN is able to learn a complex robotic task (folding soft
 objects like towels using a dual-arm mobile manipulator) from only \emph{35}
 demonstrations of $\approx$ 70 seconds-long teleoperated
 sequences. The network inputs are the raw video stream from the head camera and the
-12 DoF of the two arms. Successfully folding towels entails an explicit sequencing of
-%CERE: do you need to define DoF or is it obvious?
+12 degrees of freedom of the two arms. Successfully folding towels entails an explicit sequencing of
 actions (therefore implicit temporal modeling). The fact that such a complex
 process can be successfully learned from a small training dataset should lead
 us to reconsider the range of domains to which RNNs would be applicable.
@@ -115,21 +110,22 @@ us to reconsider the range of domains to which RNNs would be applicable.
 Indeed, as we have previously argued~\cite{lemaignan2016towards}, we believe
 that the complexity of mechanisms that such neural networks have been able to
 uncover and model should invite our community to explore its applicability to
-%CERE: ``question'' to me seemed negative
 human-robot interactions (HRI) in general, and sustained, natural child-robot
-interactions in particular. However, the current lack of appropriate HRI
-datasets suitable for neural networks training is an obstacle. In this article we introduce the PInSoRo dataset, a large dataset of child-child
-natural interactions suitable for machine learning.
+interactions in particular.
+%However, the current lack of appropriate HRI
+%datasets suitable for neural networks training is an obstacle. In this article
+%we introduce the PInSoRo dataset, a large dataset of child-child natural
+%interactions suitable for machine learning.
 
 \subsection*{Machine Learning and Social Behaviours}
 
 The use of interaction datasets to teach robots how to socially behave has been
 previously explored, and can be considered as the extension of the traditional
-learning from demonstration (LfD) paradigms to social interactions (i.e.,~\cite{nehaniv2007imitation,mohammad2015interaction}). However, existing
+learning from demonstration (LfD) paradigms to social interactions
+(i.e.,~\cite{nehaniv2007imitation,mohammad2015interaction}). However, existing
 research focuses on low-level identification or generation of short,
-%CERE: ``recognition'' confused me as it's a type of memory paradigm -- possibly that's irrelevant to this audience though
-self-standing behaviours, including social gestures~\cite{nagai2005learning}
-and gazing behaviours~\cite{calinon2006teaching}.
+self-standing behaviours, including social gestures~\cite{nagai2005learning} and
+gazing behaviours~\cite{calinon2006teaching}.
 
 Based on a human-human interaction dataset, Liu \etal~\cite{liu2014how} have
 investigated machine learning approaches to learn longer interaction sequences.
@@ -148,7 +144,6 @@ learning of social interactions, but also highlight the lack of structured
 research efforts, as further illustrated by the limited availability of large
 and open datasets of social interactions, suitable for machine-learning
 applications.
-%CERE: you've already said most of this, perhaps it could be cut?
 
 One such dataset is the \emph{Multimodal Dyadic Behavior Dataset}
 (\emph{MMDB},~\cite{rehg2013decoding}). It comprises of 160 sessions of 3 to 5
@@ -486,9 +481,6 @@ Adult seeking      & effort to seek assistance or attention from an adult; examp
 Irrelevant         & child being actively engaged in an off-task behavior; examples include starting a different activity, fiddling with objects as a main focus of attention, goofy or silly behaviors. \\ \bottomrule
 \end{tabular}
 \end{table}
-
-%CERE: this didn't table for me?
-
 
 
 \begin{figure}
