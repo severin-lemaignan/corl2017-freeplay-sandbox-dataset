@@ -71,9 +71,10 @@ behaviours is one of the future research directions that we foresee this dataset
 
 \section{Machine Learning: the Next Horizon for Social Robots?}
 
-While the family of recurrent neural networks (RNN) have repeatedly made the
+While the family of recurrent neural networks (RNNs) have repeatedly made the
 headlines over the last few years with impressive results---notably in image
 classification, image labelling and automatic translation---they have been so far 
+%CERE: do these need references?
 largely ignored by  many other fields as they are perceived to require very
 large datasets (hundreds of thousands to millions of observations) to actually
 build up useful capabilities. 
@@ -106,26 +107,27 @@ objects like towels using a dual-arm mobile manipulator) from only \emph{35}
 demonstrations of $\approx$ 70 seconds-long teleoperated
 sequences. The network inputs are the raw video stream from the head camera and the
 12 DoF of the two arms. Successfully folding towels entails an explicit sequencing of
-actions (therefore implicit temporal modeling): the fact that such a complex
+%CERE: do you need to define DoF or is it obvious?
+actions (therefore implicit temporal modeling). The fact that such a complex
 process can be successfully learned from a small training dataset should lead
 us to reconsider the range of domains to which RNNs would be applicable.
 
 Indeed, as we have previously argued~\cite{lemaignan2016towards}, we believe
 that the complexity of mechanisms that such neural networks have been able to
-uncover and model should invite our community to question its applicability to
-human-robot interactions in general, and sustained, natural child-robot
-interactions in particular. The current lack of appropriate HRI
-datasets suitable for neural networks training is however an obstacle: we
-introduce in this article the PInSoRo dataset, a large dataset of child-child
+uncover and model should invite our community to explore its applicability to
+%CERE: ``question'' to me seemed negative
+human-robot interactions (HRI) in general, and sustained, natural child-robot
+interactions in particular. However, the current lack of appropriate HRI
+datasets suitable for neural networks training is an obstacle. In this article we introduce the PInSoRo dataset, a large dataset of child-child
 natural interactions suitable for machine learning.
 
 \subsection*{Machine Learning and Social Behaviours}
 
 The use of interaction datasets to teach robots how to socially behave has been
 previously explored, and can be considered as the extension of the traditional
-learning from demonstration (LfD) paradigms to social interactions (for
-instance~\cite{nehaniv2007imitation,mohammad2015interaction}). Existing
-research focuses however on low-level recognition or generation of short,
+learning from demonstration (LfD) paradigms to social interactions (i.e.,~\cite{nehaniv2007imitation,mohammad2015interaction}). However, existing
+research focuses on low-level identification or generation of short,
+%CERE: ``recognition'' confused me as it's a type of memory paradigm -- possibly that's irrelevant to this audience though
 self-standing behaviours, including social gestures~\cite{nagai2005learning}
 and gazing behaviours~\cite{calinon2006teaching}.
 
@@ -146,6 +148,7 @@ learning of social interactions, but also highlight the lack of structured
 research efforts, as further illustrated by the limited availability of large
 and open datasets of social interactions, suitable for machine-learning
 applications.
+%CERE: you've already said most of this, perhaps it could be cut?
 
 One such dataset is the \emph{Multimodal Dyadic Behavior Dataset}
 (\emph{MMDB},~\cite{rehg2013decoding}). It comprises of 160 sessions of 3 to 5
@@ -164,8 +167,8 @@ interaction features (like mutual gaze).
 Another recent dataset, the \emph{Tower Game Dataset}~\cite{salter2015tower},
 focuses specifically on rich dyadic social interactions. The dataset comprises
 of 39 adults recorded over a total of 112 annotated sessions of 3 min in
-average. The participant are instructed to build together a tower with wooden
-blocks. Interestingly, the participants are not allowed to talk in order to
+average. The participants are instructed to build a tower together with wooden
+blocks. Interestingly, the participants are not allowed to talk to
 maximise the amount of non-verbal communication. The skeletons and faces of the
 participants are recorded, and the dataset is manually annotated with so-called
 \emph{Essential Social Interaction Predicates} (ESIPs): rhythmic coupling
@@ -180,10 +183,9 @@ free-play interaction, fostering a wider range of socio-cognitive behaviours.
 
 \section{The Plymouth Interacting Social Robots Dataset (PInSoRo)}
 
-The Plymouth Interacting Social Robots (PInSoRo) Dataset comprises of natural
-social interactions arising between children, and recorded with machine learning
-and social robotics applications in mind.
-
+The PInSoRo Dataset comprises of natural
+social interactions arising between children, recorded with machine learning
+and social robotics applications in mind. 
 As detailed in section~\ref{availability}, this dataset is open and made freely
 available to any interested researcher. It is intended to be used to train
 machine-learning algorithms (typically, deep recurrent networks) to both
@@ -210,6 +212,7 @@ or cognitive skills in a tightly controlled manner, traditional socio-cognitive 
 usually simple, constrained tasks that do not reflect the complexity and dynamics of
 real-world interactions. Conversely, this dataset aims at capturing a rich set
 of naturally-occurring social interactions, and participants should engage in a task that:
+%CERE: this last sentence read a little oddly to me... not quite sure why to fix it though
 
 \begin{itemize}
     \item is not directed, to maximise natural, non-contrived behaviours;
@@ -219,7 +222,7 @@ of naturally-occurring social interactions, and participants should engage in a 
     \item evidence social dynamics, such as coupling, joint attention, turn-taking.
 \end{itemize}
 
-We have designed a new experimental task, called the \emph{freeplay sandbox}, and based on 
+We have designed a new experimental task, called the \emph{freeplay sandbox}, that is based on 
 free play interactions. Pairs of children (4-8 years old) are invited to freely draw and interact with items
 displayed on an interactive table, without any explicit goal set by the experimenter (Fig.~\ref{fig|freeplay}).
 The task is designed so that children can engage in open-ended and non-directive play, yet it is
@@ -246,7 +249,7 @@ complete, they are simply invited to freely play for as long as they want.
 
 In order to constraint the dataset to a tractable domain, the task is limited to
 a dyadic face-to-face interaction.  The resulting interaction space is
-nevertheless high-dimensional, with two main axis: the game-related actions
+nevertheless high-dimensional, with two main axes: the game-related actions
 (drawing, manipulating items, telling stories) and the social interactions
 (monitoring the other's actions, discussing and agreeing on joint actions,
 helping/hostile behaviours, etc.).
@@ -276,7 +279,7 @@ helping/hostile behaviours, etc.).
 
 \subsection{Dataset structure}
 
-The dataset consists in a collection of records. Each record correspond to one
+The dataset consists of a collection of records. Each record correspond to one
 play interaction between two children. To date (June 2017) 25 records have been
 acquired (\ie 50 children), totalling 08h41m of recording. At the end of the acquisition campaign
 (July 2017), the dataset is planned to include 50 records. As
@@ -288,7 +291,7 @@ recorded as \emph{bag} files. Table~\ref{table|datastreams} lists all the
 recorded datastreams.  Every dataframe is timestamped; as the data is recorded
 using ROS's bag files, it can be replayed in the exact same conditions as it
 has been recorded.  All the video streams use calibrated cameras; only the raw
-RGB and depth video streams are stored in the dataset, section~\ref{postprocessing} discuss
+RGB and depth video streams are stored in the dataset, Section~\ref{postprocessing} discusses
 how to reconstruct from them calibrated streams and 3D point clouds.
 
 \begin{table}[]
@@ -349,6 +352,7 @@ coders while annotating the interaction, and is not precisely calibrated.
     poses of the interactive items are published (visible in the central panel,
     right picture), as well as an estimate of the children's head pose.  The
     left picture shows a reconstructed 3D point cloud of one child face, along
+    %CERE: left? central? this caption confused me a bit... 
     with the detected 68 facial features.}
 
     \label{fig|rviz}
@@ -414,7 +418,7 @@ The following acquisition procedure has been followed with all participants.
 \emph{(about 5 min)}              & \tabitem briefly present a Nao robot -- the robot stands up, gives a short
                                     message (\emph{"Hello, I'm Nao. Today, I'll be watching you while you
                                     play and soon I'll be able to play with you. Is that alright?"}), and
-                                    sit down. The robot is then put aside and does not intervene anymore
+                                    sits down. The robot is then put aside and does not intervene
                                     for the remaining of the experiment; \\
                                     %Condition B: "Hello, I'm Nao. Today I'll be playing with you. Exciting!")\\ 
                                   & \tabitem place children on cushions  \\ 
@@ -460,7 +464,7 @@ dlib} face tracker for facial features
 extraction.}~\cite{lemaignan2016realtime}, children faces and facial features can
 are extracted and reprojected onto the 3D point-clouds (Fig.~\ref{fig|rviz},
 right). Faces have been successfully detected in 56\% of the recorded frames
-in the dataset. Undetected faces are due to occlusions (the child put her arm in
+in the dataset. Undetected faces are due to occlusions (a child put her arm in
 front of the camera), large head rotations or quick child motion.
 
 \subsection{Annotations of Social Behaviours}
@@ -487,12 +491,12 @@ characterising social communication (table~\ref{table|sccs}).
 \begin{tabular}{@{}lp{0.8\linewidth}@{}}
 \toprule
 \bf Construct          & \bf Description                                                                                                                                                                                                                                                                                                                                           \\ \midrule
-Hostile/coercive   & anti-social behavior ; examples include grabbing, hitting, taunting, provoking, yelling.                                                       \\
-Prosocial/engaged  & engaged in a positive social interaction ; examples include on-task work or conversations, helping, sharing, and compromising.                 \\
-Assertive          & child stating a position or opinion ; examples include asserting beliefs (verbally or nonverbally), directing the partner.                     \\
-Passive/disengaged & lack of involvement in the, activity, physical disengagement ; examples include staring into space, putting head down, speaking quite softly, and walking away from an activity.\\
-Adult seeking      & effort to seek assistance or attention from an adult ; examples include requesting help.                                                       \\
-Irrelevant         & child being actively engaged in an off-task behavior ; examples include starting a different activity, fiddling with objects as a main focus of attention, goofy or silly behaviors. \\ \bottomrule
+Hostile/coercive   & anti-social behavior; examples include grabbing, hitting, taunting, provoking, yelling.                                                       \\
+Prosocial/engaged  & engaged in a positive social interaction; examples include on-task work or conversations, helping, sharing, and compromising.                 \\
+Assertive          & child stating a position or opinion; examples include asserting beliefs (verbally or nonverbally), directing the partner.                     \\
+Passive/disengaged & lack of involvement in the activity, physical disengagement; examples include staring into space, putting head down, speaking quite softly, and walking away from an activity.\\
+Adult seeking      & effort to seek assistance or attention from an adult; examples include requesting help.                                                       \\
+Irrelevant         & child being actively engaged in an off-task behavior; examples include starting a different activity, fiddling with objects as a main focus of attention, goofy or silly behaviors. \\ \bottomrule
 \end{tabular}
 \end{table}
 
