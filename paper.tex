@@ -333,7 +333,7 @@ USB-3 to the computer. The computer performs all the data acquisition using ROS
 Kinetic.
 
 The children's faces are recorded using two short range Intel RealSense SR300
-RGB-D cameras (0.2m to 1.2m) placed at the corners of the the sandtray
+RGB-D cameras (0.2m to 1.2m) placed at the corners of the sandtray
 (Fig.~\ref{fig|freeplay}) and tilted to face the children. The
 cameras are rigidly mounted on custom 3D-printed brackets. This enables a
 precise measurement of their 6D pose relative to the touchscreen (extrinsic
@@ -420,7 +420,7 @@ sports bib to wear.
 \emph{(30 sec)}                   & \\ \midrule
 \bf Tutorial                      & explain how to interact with the game, ensure the children are confident with the manipulation/drawing \\ 
 \emph{(1-2 min)}                  & \\ \midrule
-\bf Items placement game          & \emph{(unrelated task on spatial reasoning -- as this task uses the same graphical environment as the main free-play task, it helps the children to familiarise themselves with the game environment)} \\
+\bf Items placement game          & \emph{(unrelated task on spatial reasoning -- as this task uses the same graphical environment as the main free-play task, it helps however the children to familiarise themselves with the game environment)} \\
 \emph{(5 to 10 min)}              &  \\ \midrule
 \bf Freeplay task                 & \tabitem initial prompt: \emph{"Just to remind you, you can use the animals or draw. Whatever you
                                   like. If you run out of ideas, there's also an ideas box. For example, the first one is a
@@ -462,10 +462,10 @@ have been added to the dataset.
 
 \subsection{Annotations of Social Behaviours}
 
-The last part of the dataset consist in annotations of the children's social
+The last part of the dataset consists in annotations of the children's social
 behaviours. These behaviours are either automatically computed and coded
 (mutual gaze, for instance), or are human-coded. The annotations are all
-timestamped and integrated as an independent datastream in the dataset.
+timestamped and integrated as an supplementary datastream in the dataset.
 
 \paragraph{Human-coded social behaviours}
 
@@ -473,12 +473,13 @@ The dataset includes two types of manual annotations: \emph{remarkable events},
 annotated by the experimenter during the experiment as free text annotation, and
 \emph{social behaviours} coded with the \emph{Social Communication Coding
 System} (SCCS) proposed by Olswang~\etal\cite{olswang2006reliability}.
-These annotations are performed post-hoc, with a dedicated tool, able to replay synchronously
-the main datastreams (Fig.~\ref{fig|analysis}).
-
 The SCCS consists in 6 mutually exclusive constructs characterising social
 communication (Table~\ref{table|sccs}). These behaviours represent a typical
 classification output that a network could be trained to recognise.
+
+The SCCS coding is performed post-hoc with the help of a dedicated tool, able
+to replay synchronously the main datastreams (Fig.~\ref{fig|analysis}) while
+the human coder annotates the interaction.
 
 \begin{table}[]
 \centering
@@ -499,13 +500,13 @@ Irrelevant         & child being actively engaged in an off-task behavior; examp
 
 
 
-\begin{figure}[b!]
+\begin{figure}[th!]
     \centering
     \includegraphics[width=0.8\linewidth]{analysis}
     \caption{Screenshot of our interaction annotation tool: the recorded interaction data
     is played back synchronously (faces and audio of the two children,
-    interaction occurring on the interactive table, etc.) while the human coder
-    annotate the record timeline with social situations of interest.}
+    interaction occurring on the interactive table, environment camera) while the human coder
+    annotates the record timeline with social situations of interest.}
     \label{fig|analysis}
 \end{figure}
 
@@ -535,7 +536,7 @@ images. The child's age and gender are also available.
 The dataset is freely available to any interested researcher\footnote{Note to
 the reviewers: for the purpose of the review, an excerpt of the dataset is
 available online: \url{https://freeplay-sandbox.github.io/}. A link to the
-complete dataset will be made available in the final version of the article.}.
+complete dataset will be made available with the final version of the article.}.
 Due to ethical and data protection regulations, the dataset is however made
 available in two forms: a public, Creative Commons licensed, version that does
 not include any video material of the children (no video streams, audio
@@ -622,16 +623,18 @@ a data protection form.
 \subsection{Child-robot baseline}
 
 During the acquisition campaign for the PInSoRo dataset, we have also recorded a
-\emph{child-robot} interaction baseline. We were using the exact same protocol
+\emph{child-robot} interaction baseline. We use the exact same protocol
 as described above, only with one child replaced by a Nao robot.
 
-The robot was fully autonomous, and programmed to exhibit a non-social behaviour
-(its action policy was simply to repeatedly move interactive items to
-pre-defined zones, entirely ignoring its child partner).
+The robot is fully autonomous, and programmed to exhibit a \emph{non-social}
+behaviour (its action policy is simply to repeatedly move interactive items to
+pre-defined zones, entirely ignoring its child partner).  This behaviour (and
+the resulting reactions of the children to a robot acting in a non-social way)
+represents an experimental baseline against which future work on social
+human-robot interaction can be compared.
 
-As such, this behaviour (and the resulting reaction of the children to a
-robot acting in a non-social way) represent an experimental baseline against which
-future work can be compared.
+This second dataset is public as well, and is made available to the interested
+researchers under the same conditions as the child-child interaction dataset.
 
 
 %\subsection{Analysis of the free play sandbox}
@@ -693,19 +696,33 @@ future work can be compared.
 %child-robot free play situations, we show a significant increase of the
 %interaction duration.
 
-We introduce a novel dataset for the study of social cognition. The dataset
-consists in dyadic free-play episodes, with children aged 4 to 8.
+In this article, we have introduced a novel dataset for the study of early
+social cognition. The dataset consists in dyadic free-play episodes with
+children aged 4 to 8. The interactions are scaffolded by a novel, playful task,
+and a large range of social behaviours have been observed: pro-social behaviours
+(for instance, helping behaviours, negotiations, natural turn-taking),
+antagonistic behaviours (for instance, disrupting behaviours, refusal to
+cooperate), assertive behaviours (dominant behaviours, manipulative behaviours)
+and numerous episodes of off-topic actions and interactions.
 
-The dataset is built with machine learning applications in mind, and
-particularly, applications to socio-cognitive robotics.
+For a robot to recognise such behaviours and situations would be of great
+interest to the human-robot interaction community as it would effectively
+increase the robot's situation awareness. This would in turn enable the robot to
+respond appropriately to the complex social situations encountered in real-world
+scenarios.
+
+Our dataset is open, and built with machine learning applications in mind, and
+particularly, applications to socio-cognitive robotics: we hope it will
+effectively contribute to bridge the gap between machine learning and social
+robotics, and support the research efforts of our community.
 
 
-Finally, the social setting (two players facing each other) implicitly invites
-social interaction: onlooker play, for instance, is unlikely to be observed as
-the children are physically engaged with the game and the other participant
-(they are sitting in front of game, close to each other). The three higher forms
-of social play listed by Parten (parallel play, associative play and cooperative
-play) are however possible with this setup.
+%Finally, the social setting (two players facing each other) implicitly invites
+%social interaction: onlooker play, for instance, is unlikely to be observed as
+%the children are physically engaged with the game and the other participant
+%(they are sitting in front of game, close to each other). The three higher forms
+%of social play listed by Parten (parallel play, associative play and cooperative
+%play) are however possible with this setup.
 
 
 \bibliography{biblio}
