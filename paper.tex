@@ -359,8 +359,8 @@ The sandbox is implemented with two frameworks: the Qt's QtQuick framework
 for the graphical interface of the game, and the \emph{Robot Operating System}
 (ROS) for the modular implementation of the data processing and data acquisition
 pipelines. A dedicated bridge between QtQuick and ROS has been specifically
-developped to enable the game interface to export the positions of every
-iteractive items as they move, the background image whenever it is painted over,
+developed to enable the game interface to export the positions of every
+interactive items as they move, the background image whenever it is painted over,
 and the children's touches. The game interface is open-source and available online:
 \url{https://github.com/severin-lemaignan/freeplay-sandbox-qt}.
 
@@ -369,14 +369,20 @@ interaction is also possible (Fig.~\ref{fig|rviz}).
 The ROS data acquisition pipeline is open-source as well, and available from
 \url{https://github.com/severin-lemaignan/freeplay-sandbox-ros}.
 
-Finally, we have developped a web-based \emph{supervisor} that permits the
+Finally, we have developed a web-based \emph{supervisor} that enables the
 experimenter to remotely start/stop the ROS nodes and the game GUI, as well as to
 record annotations during the experiment. The supervisor ensures that the exact
-same recording procedure (detailled in the next section) is followed for every
+same recording procedure (detailed in the next section) is followed for every
 participants. The supervisor is available online as well:
 \url{https://github.com/severin-lemaignan/freeplay-sandbox-supervisor}.
 
 \subsection{Dataset Acquisition}
+
+The experimental setup is presented in Fig.~\ref{fig|setup}.  The experimenter
+stays in the room, visible to the child, during the whole experiment. When
+requested by the nursery or school, another childminder (nursery/school staff)
+can be present in the room. She/he is however asked not to step in during the
+experiment.
 
 \begin{figure}[htbp]
     \centering
@@ -390,16 +396,12 @@ participants. The supervisor is available online as well:
     \label{fig|setup}
 \end{figure}
 
-The experimenter stays in the room, visible to the child. When
-requested by the nursery or school, another childminder (nursery/school
-staff) can be present in the room. She/he is however asked not to step
-in during the experiment.
+\paragraph{Demographics}
 
-
-2 age groups, balanced across conditions: 4 y.o. (nursery) and 6 to 7
-y.o. (Y1/Y2)
-
-Normally developing children, from local primary schools and nurseries.
+We recruited normally developing children, from local primary schools and
+nurseries. The children are aged 4 to 8 ($M=5.8$). So far, 50 children (23
+female, 27 males) were recorded in pairs. Pairs were formed by the school or
+nursery staff, and all the pairs knew each other before hand.
 
 \paragraph{Acquisition Procedure}
 
@@ -408,7 +410,7 @@ The following acquisition procedure has been followed with all participants.
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
     \begin{tabular}{@{}p{0.2\linewidth}p{0.8\linewidth}@{}}
 \toprule
-\bf Welcome                       & \tabitem explain the purpose of the study: showing robots how children play  \\
+\bf Greetings                     & \tabitem explain the purpose of the study: showing robots how children play  \\
 \emph{(about 5 min)}              & \tabitem briefly present a Nao robot -- the robot stands up, gives a short
                                     message (\emph{"Hello, I'm Nao. Today, I'll be watching you while you
                                     play and soon I'll be able to play with you. Is that alright?"}), and
